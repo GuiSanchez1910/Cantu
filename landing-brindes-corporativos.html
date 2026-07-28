@@ -15,6 +15,72 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
+    .specialty-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    .specialty-content {
+      flex: 1;
+    }
+
+    .specialty-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .catalog-card {
+      width: 320px;
+      flex-shrink: 0;
+      background: var(--cta);
+      color: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 18px 38px rgba(5, 21, 46, .28);
+      border: 1px solid var(--cta-dark);
+    }
+
+    .catalog-icon {
+      font-size: 48px;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .catalog-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+
+    .catalog-card p {
+      margin-bottom: 24px;
+      color: rgba(255, 255, 255, .8);
+      line-height: 1.6;
+    }
+
+    .catalog-card .btn {
+      width: 100%;
+      justify-content: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--cta);
+    }
+
+    @media (max-width:900px) {
+      .specialty-inner {
+        flex-direction: column;
+      }
+
+      .catalog-card {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+
     :root {
       --bg: #FFFFFF;
       --cta: #0B2A55;
@@ -551,12 +617,18 @@
 
       .hero,
       .carousel {
-        height: clamp(420px, 62svh, 520px);
+        height: clamp(660px, 88svh, 720px);
         min-height: 0;
       }
 
+      .carousel {
+        overflow: hidden;
+        touch-action: pan-y;
+      }
+
       .hero-copy {
-        top: 44%;
+        top: 28px;
+        transform: none;
       }
 
       .hero-copy h1 {
@@ -571,9 +643,21 @@
         background: linear-gradient(180deg, rgba(3, 16, 38, .8) 0%, rgba(3, 16, 38, .45) 58%, rgba(3, 16, 38, .18) 100%);
       }
 
+      .slide-art {
+        align-items: flex-end;
+        padding-bottom: 58px;
+      }
+
       .slide-art img {
-        padding: 45% 4% 6%;
+        width: 100%;
+        height: 30%;
+        padding: 0 8%;
         object-position: center bottom;
+      }
+
+      .slide-art img.polo-image {
+        height: 33%;
+        padding: 0 5%;
       }
 
       .slide-art svg {
@@ -587,7 +671,22 @@
       }
 
       .dots {
-        bottom: 24px;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .car-btn {
+        width: 44px;
+        height: 44px;
+      }
+
+      #prevBtn {
+        left: 12px;
+      }
+
+      #nextBtn {
+        right: 12px;
       }
     }
 
@@ -645,7 +744,14 @@
     }
 
     .specialty-inner {
-      max-width: 780px;
+      width: 100%;
+      max-width: none;
+      justify-content: space-between;
+      gap: clamp(72px, 12vw, 180px);
+    }
+
+    .specialty-content {
+      max-width: 600px;
     }
 
     .specialty-inner .eyebrow {
@@ -728,7 +834,41 @@
 
     @media (max-width:560px) {
       .cat-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .cat-card {
+        min-width: 0;
+        min-height: 0;
+        padding: 16px;
+        display: grid;
+        grid-template-rows: 44px 38px auto;
+        align-content: start;
+        gap: 10px;
+      }
+
+      .cat-icon {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 0;
+      }
+
+      .cat-card h3 {
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .cat-card p {
+        display: none;
+      }
+
+      .cat-card .btn-small {
+        margin-top: 0;
+        padding: 9px 10px;
+        font-size: 11px;
+        line-height: 1.2;
+        align-self: start;
       }
     }
 
@@ -905,6 +1045,22 @@
       color: #081B3A;
     }
 
+    .banner-card>.btn-small {
+      position: absolute;
+      z-index: 3;
+      bottom: 28px;
+      left: 75%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #081B3A;
+      padding: 12px 22px;
+    }
+
+    .banner-card>.btn-small:hover {
+      background: #FFC857;
+      color: #081B3A;
+    }
+
     /* lado direito */
 
     .banner-card img {
@@ -918,7 +1074,7 @@
       object-fit: contain;
       object-position: right center;
 
-      padding: 20px 40px;
+      padding: 20px 40px 76px;
 
       transition: .45s;
     }
@@ -966,6 +1122,15 @@
         height: 250px;
         padding: 10px 30px 30px;
         object-position: center;
+      }
+
+      .banner-card>.btn-small {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        align-self: center;
+        margin: -12px 0 28px;
+        transform: none;
       }
 
       .banner-card::after {
@@ -1425,7 +1590,7 @@
       line-height: 1;
     }
 
-    
+
 
     /* =========================
    FOOTER
@@ -1564,6 +1729,179 @@
       }
 
     }
+
+    /* Mobile: texto e produto em blocos independentes, sem sobreposição. */
+    @media (max-width:768px) {
+      .hero {
+        display: block;
+        height: auto;
+        min-height: 0;
+        background: #05152E;
+      }
+
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+      }
+
+      .hero-copy {
+        display: contents;
+      }
+
+      .hero-copy h1 {
+        grid-row: 1;
+        margin: 0;
+        padding: 40px 20px 22px;
+        font-size: clamp(1.9rem, 8vw, 2.35rem);
+        line-height: 1.15;
+        text-align: center;
+        background: #05152E;
+      }
+
+      .hero-copy p.lead {
+        grid-row: 3;
+        max-width: 35rem;
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+        font-size: .98rem;
+        line-height: 1.55;
+        text-align: center;
+        background: #05152E;
+      }
+
+      .hero-ctas {
+        display: none;
+      }
+
+      .hero-visual {
+        grid-row: 2;
+        width: 100%;
+        height: clamp(290px, 82vw, 380px);
+      }
+
+      .carousel {
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        border-radius: 0;
+        touch-action: pan-y;
+      }
+
+      .slide {
+        padding: 0;
+      }
+
+      .slide::after {
+        background: rgba(3, 16, 38, .04);
+      }
+
+      .slide-art {
+        inset: 0;
+        height: auto;
+        padding: 22px 18px 48px;
+      }
+
+      .slide-art img,
+      .slide-art img.polo-image {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        padding: 0;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .slide-content {
+        display: none;
+      }
+
+      .dots {
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .car-btn {
+        width: 42px;
+        height: 42px;
+      }
+
+      #prevBtn {
+        left: 12px;
+      }
+
+      #nextBtn {
+        right: 12px;
+      }
+    }
+
+    @media (max-width:560px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .cat-card {
+        display: grid;
+        grid-template-rows: 44px 38px auto;
+        align-content: start;
+        gap: 10px;
+        min-height: 0;
+        padding: 16px;
+      }
+
+      .cat-icon {
+        width: 44px;
+        height: 44px;
+        margin: 0;
+        justify-self: start;
+        align-self: start;
+      }
+
+      .cat-card h3 {
+        justify-self: start;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .cat-card p {
+        display: none;
+      }
+
+      .cat-card .btn-small {
+        justify-self: start;
+        align-self: start;
+        margin: 0;
+        padding: 8px 10px;
+        font-size: 0;
+        line-height: 1;
+      }
+
+      .cat-card .btn-small::before {
+        content: "Solicitar Orçamento";
+        font-size: 10px;
+        line-height: 1;
+      }
+    }
+
+    /* Botões de orçamento usam o mesmo amarelo do destaque de frete. */
+    a.btn.btn-small[data-wa] {
+      background: var(--gold);
+      color: #081B3A;
+    }
+
+    a.btn.btn-small[data-wa]:hover {
+      background: #E5AE38;
+      color: #081B3A;
+    }
+
+    .btn .quote-icon {
+      font-size: .95em;
+    }
   </style>
 </head>
 
@@ -1648,41 +1986,31 @@
               </div>
               <div class="slide-content">
                 <span class="slide-tag-label">POLOS</span>
-                <h3>Camisas polo personalizadas para sua equipe</h3>
               </div>
             </div>
 
             <div class="slide" data-color="var(--cta)"
-              data-title="Brindes que deixam sua marca sempre por <em>perto</em>."
-              data-description="Canetas e garrafas personalizadas acompanham clientes e equipes no dia a dia, levando a identidade da sua empresa a cada encontro.">
+              data-title="Camisetas personalizadas que destacam sua <em>marca</em>."
+              data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.">
+
               <div class="slide-art" style="background:linear-gradient(160deg,#C7E7FF,var(--bg));">
-                <svg viewBox="0 0 200 200" fill="none">
-                  <rect x="86" y="40" width="10" height="100" rx="5" fill="var(--cta)" transform="rotate(18 91 90)" />
-                  <rect x="120" y="70" width="34" height="72" rx="17" fill="none" stroke="var(--cta)"
-                    stroke-width="6" />
-                  <line x1="137" y1="86" x2="137" y2="96" stroke="var(--cta)" stroke-width="6" stroke-linecap="round" />
-                </svg>
+                <img src="camisetas.png" alt="Camisetas personalizadas">
               </div>
+
               <div class="slide-content">
-                <span class="slide-tag-label">Canetas &amp; garrafas</span>
-                <h3>Sua marca presente na rotina dos clientes</h3>
+                <span class="slide-tag-label">Camisetas Personalizadas</span>
               </div>
+
             </div>
 
             <div class="slide" data-color="var(--gold)"
               data-title="Kits corporativos para tornar cada chegada <em>especial</em>."
               data-description="Monte kits de escritório personalizados para integrar novos colaboradores, presentear clientes e fortalecer a cultura da sua empresa.">
               <div class="slide-art" style="background:linear-gradient(160deg,#FCEFCB,var(--bg));">
-                <svg viewBox="0 0 200 200" fill="none">
-                  <rect x="55" y="80" width="90" height="70" rx="8" fill="none" stroke="#C79A1E" stroke-width="6" />
-                  <path d="M55 80l45-24 45 24" stroke="#C79A1E" stroke-width="6" fill="none" stroke-linejoin="round" />
-                  <line x1="100" y1="80" x2="100" y2="150" stroke="#C79A1E" stroke-width="6" />
-                  <line x1="55" y1="112" x2="145" y2="112" stroke="#C79A1E" stroke-width="6" />
-                </svg>
+                <img src="kit.png" alt="Kit corporativo personalizado">
               </div>
               <div class="slide-content">
                 <span class="slide-tag-label">Kits de escritório</span>
-                <h3>Kits corporativos para receber e valorizar</h3>
               </div>
             </div>
 
@@ -1719,22 +2047,45 @@
     <section class="specialty">
       <div class="wrap">
         <div class="specialty-inner reveal">
-          <span class="eyebrow">Nossa especialidade</span>
-          <h2>Peças personalizadas, do jeito certo</h2>
-          <p>Somos especialistas na confecção de camisas polo, camisetas e jaquetas com faixas refletivas, além de
-            brindes corporativos personalizados — sempre com a identidade da sua marca aplicada com qualidade.</p>
-          <span class="specialty-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M20 6L9 17l-5-5" />
-            </svg>
-            A partir de 15 unidades
-          </span>
-          <span class="specialty-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M20 6L9 17l-5-5" />
-            </svg>
-            Frete grátis Curitiba e região
-          </span>
+
+          <div class="specialty-content">
+            <span class="eyebrow">Nossa especialidade</span>
+
+            <h2>Peças personalizadas, do jeito certo</h2>
+
+            <p>
+              Somos especialistas na confecção de camisas polo, camisetas e jaquetas com faixas refletivas, além de
+              brindes corporativos personalizados — sempre com a identidade da sua marca aplicada com qualidade.
+            </p>
+
+            <div class="specialty-badges">
+              <span class="specialty-badge">
+                <i class="fa-solid fa-check"></i>
+                A partir de 15 unidades
+              </span>
+
+              <span class="specialty-badge">
+                <i class="fa-solid fa-check"></i>
+                Frete grátis Curitiba e região
+              </span>
+            </div>
+          </div>
+
+          <div class="catalog-card">
+            <i class="fa-solid fa-book-open catalog-icon"></i>
+
+            <h3>Veja nosso catálogo</h3>
+
+            <p style="color: white">
+              Conheça todos os modelos, cores e opções de personalização disponíveis.
+            </p>
+
+            <a href="https://heyzine.com/flip-book/26e091ebf0.html" target="_blank" class="btn">
+              <i class="fa-solid fa-file-pdf"></i>
+              Acessar catálogo
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1762,7 +2113,7 @@
 
             <a class="btn btn-small" data-wa data-msg="Olá! Vi Mochilas e Malas no site e gostaria de um orçamento."
               href="#">
-              Orçar esta categoria →
+              <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Orçar esta categoria
             </a>
           </article>
 
@@ -1779,7 +2130,7 @@
             </p>
 
             <a class="btn btn-small" data-wa data-msg="Olá! Vi Escritório no site e gostaria de um orçamento." href="#">
-              Orçar esta categoria →
+              <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Orçar esta categoria
             </a>
           </article>
 
@@ -1797,7 +2148,7 @@
 
             <a class="btn btn-small" data-wa data-msg="Olá! Vi Canetas e Garrafas no site e gostaria de um orçamento."
               href="#">
-              Orçar esta categoria →
+              <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Orçar esta categoria
             </a>
           </article>
 
@@ -1814,7 +2165,7 @@
             </p>
 
             <a class="btn btn-small" data-wa data-msg="Olá! Vi Diversos no site e gostaria de um orçamento." href="#">
-              Orçar esta categoria →
+              <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Orçar esta categoria
             </a>
           </article>
 
@@ -1839,11 +2190,14 @@
 
               <a class="btn btn-small" data-wa
                 data-msg="Olá! Vi Garrafas Personalizadas no site e gostaria de um orçamento." href="#">
-                Solicitar orçamento →
+                <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar orçamento
               </a>
+
             </div>
 
             <img src="garrafa.png" alt="Garrafas personalizadas">
+
+
 
           </article>
 
@@ -1859,8 +2213,9 @@
               </p>
 
               <a class="btn btn-small" data-wa data-msg="Olá! Vi Mochilas no site e gostaria de um orçamento." href="#">
-                Solicitar orçamento →
+                <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar orçamento
               </a>
+
             </div>
 
             <img src="mochila.png" alt="Mochilas personalizadas">
@@ -1879,8 +2234,9 @@
 
               <a class="btn btn-small" data-wa
                 data-msg="Olá! Vi Jaquetas Refletivas no site e gostaria de um orçamento." href="#">
-                Solicitar orçamento →
+                <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar orçamento
               </a>
+
             </div>
 
             <img src="jaqueta.png" alt="Jaquetas refletivas personalizadas">
@@ -2041,6 +2397,7 @@
     slides.forEach((_, i) => {
       const b = document.createElement('button');
       if (i === 0) b.classList.add('active');
+      b.setAttribute('aria-label', `Ir para o slide ${i + 1}`);
       b.addEventListener('click', () => goTo(i));
       dotsWrap.appendChild(b);
     });
@@ -2056,10 +2413,28 @@
     document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
     document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
 
-    let auto = setInterval(() => goTo(current + 1), 5000);
+    let auto;
+    function startAuto() {
+      clearInterval(auto);
+      auto = setInterval(() => goTo(current + 1), 5000);
+    }
+
     const carousel = document.getElementById('carousel');
     carousel.addEventListener('mouseenter', () => clearInterval(auto));
-    carousel.addEventListener('mouseleave', () => auto = setInterval(() => goTo(current + 1), 5000));
+    carousel.addEventListener('mouseleave', startAuto);
+
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+      clearInterval(auto);
+    }, { passive: true });
+    carousel.addEventListener('touchend', (event) => {
+      const distance = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(distance) > 40) goTo(current + (distance < 0 ? 1 : -1));
+      startAuto();
+    }, { passive: true });
+
+    startAuto();
 
     // ---------- Reveal on scroll (with stagger for grids) ----------
     document.querySelectorAll('.cat-grid .cat-card').forEach((el, i) => el.style.setProperty('--d', `${i * 90}ms`));
