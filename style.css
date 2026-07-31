@@ -1,0 +1,82 @@
+/* ---- visual decorativo do card Grife (crachá + ícones), robusto em qualquer largura ---- */
+.banner-card--grife{
+  display:flex;
+  align-items:center;
+}
+.banner-card--grife .banner-content{
+  width:70%;
+  flex:0 0 70%;
+}
+.banner-card--grife .grife-visual{
+  position:relative;
+  inset:auto;
+  width:30%;
+  flex:0 0 30%;
+  height:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:24px 12px;
+}
+.banner-card--grife.banner-card::after{
+  display:none;
+}
+
+.grife-badge{
+  width:clamp(64px,9vw,92px);
+  height:clamp(64px,9vw,92px);
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--highlight),var(--cta));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 16px 32px -12px rgba(0,0,0,.5);
+  flex-shrink:0;
+}
+.grife-badge i{
+  font-size:clamp(26px,3.4vw,36px);
+  color:#fff;
+}
+
+.grife-chips{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  max-width:180px;
+}
+.grife-chip{
+  width:clamp(32px,4.2vw,42px);
+  height:clamp(32px,4.2vw,42px);
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:floaty 5s ease-in-out infinite;
+}
+.grife-chip i{
+  font-size:clamp(13px,1.7vw,17px);
+  color:#fff;
+}
+.grife-chip:nth-child(1){ animation-delay:.1s; }
+.grife-chip:nth-child(2){ animation-delay:.6s; }
+.grife-chip:nth-child(3){ animation-delay:1.1s; }
+.grife-chip:nth-child(4){ animation-delay:1.6s; }
+
+@media (max-width:900px){
+  .banner-card--grife{
+    flex-direction:column;
+  }
+  .banner-card--grife .banner-content,
+  .banner-card--grife .grife-visual{
+    width:100%;
+    flex:0 0 auto;
+  }
+  .banner-card--grife .grife-visual{
+    padding:0 24px 32px;
+  }
+}
