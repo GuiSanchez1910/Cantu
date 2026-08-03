@@ -80,3 +80,153 @@
     padding:0 24px 32px;
   }
 }
+
+.banner-card--grife{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+}
+
+.banner-card--grife .banner-content{
+    flex:1;
+}
+
+.grife-visual{
+    flex:0 0 360px;
+    display:flex;
+    justify-content:center;
+}
+
+.grife-showcase{
+    width:100%;
+    max-width:340px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+.showcase-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    color:#fff;
+    font-weight:700;
+    font-size:1.1rem;
+
+    margin-bottom:24px;
+}
+
+.showcase-header i{
+    color:#57c4ff;
+    font-size:24px;
+}
+
+.showcase-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.showcase-item{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:20px 12px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    transition:.3s;
+}
+
+.showcase-item:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.12);
+    border-color:#57c4ff;
+}
+
+.showcase-item i{
+    font-size:30px;
+    color:#57c4ff;
+    margin-bottom:10px;
+}
+
+.showcase-item span{
+    color:#fff;
+    font-size:.9rem;
+    font-weight:600;
+}
+
+.showcase-footer{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.1);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    color:#fff;
+    font-size:.9rem;
+    font-weight:600;
+}
+
+.showcase-footer i{
+    color:#57c4ff;
+}
+
+@media (max-width:992px){
+
+    .banner-card--grife{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .grife-visual{
+        width:100%;
+    }
+
+    .grife-showcase{
+        max-width:420px;
+    }
+
+}
+
+.banner-card--grife{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+
+    padding:40px;
+    overflow:hidden; /* impede qualquer elemento de sair do banner */
+}
+
+.banner-card--grife .banner-content{
+    flex:1 1 60%;
+    min-width:0;
+}
+
+.grife-visual{
+    flex:1 1 40%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-width:280px;
+    max-width:360px;
+}
+
+.grife-showcase{
+    width:100%;
+    max-width:340px;
+    box-sizing:border-box;
+}

@@ -137,7 +137,6 @@
     }
 
     .eyebrow {
-      font-family: 'Space Mono', monospace;
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -266,6 +265,20 @@
       color: #fff;
     }
 
+    .cat-card .btn-small {
+      background: var(--gold);
+      color: var(--cta-dark);
+    }
+
+    .cat-card .btn-small:hover {
+      background: #f7bb33;
+      color: var(--cta-dark);
+    }
+
+    section[id] {
+      scroll-margin-top: 120px;
+    }
+
     .wa-icon {
       width: 16px;
       height: 16px;
@@ -343,6 +356,35 @@
       align-items: center;
       justify-content: space-between;
       height: 78px;
+      gap: 16px;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .mobile-nav-panel,
+    .mobile-nav-backdrop {
+      display: none;
     }
 
     .logo {
@@ -361,18 +403,34 @@
     }
 
     .logo-brand {
+      flex: 1;
+      justify-content: center;
+      flex-direction: row;
+      gap: 10px;
+      line-height: 1.1;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      display: flex;
       flex-direction: column;
-      gap: 0;
-      line-height: 1;
+      gap: 2px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
     .logo-since {
-      font-family: 'Manrope', sans-serif;
       font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: white;
     }
 
     .logo .dot {
@@ -385,17 +443,43 @@
     nav.main-nav {
       display: flex;
       gap: 34px;
-      font-size: 14.5px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
     }
 
     nav.main-nav a {
-      opacity: 0.75;
-      transition: opacity .2s;
+      color: white;
+      opacity: 1;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color .2s, opacity .2s;
+    }
+
+    nav.main-nav a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 999px;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      transition: transform .25s var(--ease), width .25s var(--ease), background .25s;
     }
 
     nav.main-nav a:hover {
-      opacity: 1;
+      opacity: 0.9;
+    }
+
+    nav.main-nav a:hover::after {
+      width: calc(100% - 0px);
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    section#categorias {
+      scroll-margin-top: 120px;
     }
 
     .header-actions {
@@ -405,8 +489,108 @@
     }
 
     @media (max-width:860px) {
+      .mobile-menu-toggle {
+        display: flex;
+        flex-shrink: 0;
+      }
+
+      .header-main .wrap {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr);
+        align-items: center;
+        gap: 10px;
+        height: auto;
+        padding: 12px 16px;
+      }
+
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: none;
+        position: static;
+        z-index: auto;
+        grid-column: 2;
+      }
+
+      .logo-image {
+        width: 76px;
+        height: 76px;
+      }
+
+      .logo-text {
+        font-size: 11px;
+        max-width: 140px;
+      }
+
       nav.main-nav {
         display: none;
+      }
+
+      .header-actions {
+        display: none;
+      }
+
+      .mobile-nav-panel {
+        display: flex;
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(84vw, 320px);
+        flex-direction: column;
+        gap: 10px;
+        padding: 24px 18px 24px;
+        background: rgba(11, 42, 85, 0.98);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
+        transform: translateX(-100%);
+        transition: transform 0.24s ease;
+        z-index: 1300;
+      }
+
+      .mobile-nav-panel.is-open {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-panel .mobile-panel-title {
+        color: white;
+        font-size: 18px;
+        font-weight: 800;
+        margin: 0 0 6px;
+      }
+
+      .mobile-nav-panel .mobile-contact-item,
+      .mobile-nav-panel a {
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .mobile-nav-panel .mobile-contact-item svg,
+      .mobile-nav-panel a svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .mobile-nav-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 8, 20, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.24s ease;
+        z-index: 1250;
+      }
+
+      .mobile-nav-backdrop.is-open {
+        opacity: 1;
+        pointer-events: auto;
       }
     }
 
@@ -493,6 +677,12 @@
       line-height: 1.65;
       color: rgba(245, 250, 255, 0.88);
       max-width: 460px;
+    }
+
+    .hero-copy p.lead strong {
+      display: inline-block;
+      white-space: nowrap;
+      margin: 0 2px;
     }
 
     .hero-ctas {
@@ -586,7 +776,6 @@
     }
 
     .slide-tag-label {
-      font-family: 'Space Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -760,7 +949,6 @@
     }
 
     .trust-track span {
-      font-family: 'Space Mono', monospace;
       font-size: 13px;
       letter-spacing: 0.03em;
       color: #fff;
@@ -834,7 +1022,6 @@
       color: #fff;
       padding: 11px 18px;
       border-radius: 999px;
-      font-family: 'Space Mono', monospace;
       font-size: 12px;
       letter-spacing: .06em;
       text-transform: uppercase;
@@ -884,6 +1071,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 22px;
+      align-items: stretch;
     }
 
     @media (max-width:980px) {
@@ -938,12 +1126,16 @@
       padding: 28px 24px 24px;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      gap: 12px;
       min-height: 290px;
+      height: 100%;
       box-shadow: 0 10px 24px -16px rgba(8, 27, 58, 0.18);
       transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s;
       border: 2px solid var(--cta);
       border-radius: 20px;
-      /* Arredondado */
       overflow: hidden;
       opacity: 0;
       transform: translateY(26px);
@@ -974,16 +1166,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
+      margin-bottom: 0;
       color: #fff;
       box-shadow: 0 8px 18px -8px rgba(8, 27, 58, 0.5);
       transition: background .3s, transform .4s var(--ease);
+      flex-shrink: 0;
     }
 
-    .cat-card:hover .cat-icon {
+    /* .cat-card:hover .cat-icon {
       transform: scale(1.08);
       background: var(--cta-dark);
-    }
+    } */
 
     .cat-icon svg {
       width: 24px;
@@ -993,19 +1186,28 @@
     .cat-card h3 {
       font-size: 19px;
       font-weight: 600;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      text-align: center;
     }
 
     .cat-card p {
       font-size: 14px;
       color: rgba(8, 27, 58, 0.68);
-      margin-top: 9px;
+      margin: 0;
       line-height: 1.55;
-      flex: 1;
+      min-height: 72px;
+      text-align: center;
     }
 
     .cat-card .btn-small {
-      margin-top: 18px;
-      align-self: flex-start;
+      margin-top: 0;
+      align-self: center;
+      display: inline-flex;
+      justify-content: center;
     }
 
     /* -------- PRODUCT CAROUSEL -------- */
@@ -1018,12 +1220,12 @@
     }
 
     .prod-carousel {
-  overflow-x: hidden;
-  overflow-y: visible;
-  margin: 0 48px;
-  padding: 22px 40px 18px;
-  position: relative;
-}
+      overflow-x: hidden;
+      overflow-y: visible;
+      margin: 0 48px;
+      padding: 22px 40px 18px;
+      position: relative;
+    }
 
 
     .prod-track {
@@ -1159,6 +1361,19 @@
       flex: 1;
     }
 
+    .products-carousel#vestuario .prod-card-body,
+    .products-carousel#produtos .prod-card-body,
+    .products-carousel#garrafas .prod-card-body {
+      align-items: center;
+      text-align: center;
+    }
+
+    .products-carousel#vestuario .prod-card-body .btn-small,
+    .products-carousel#produtos .prod-card-body .btn-small,
+    .products-carousel#garrafas .prod-card-body .btn-small {
+      align-self: center;
+    }
+
     .prod-card-body h3 {
       font-size: 15px;
       font-weight: 600;
@@ -1174,6 +1389,7 @@
       margin-bottom: 12px;
       flex: 1;
       display: -webkit-box;
+      line-clamp: 3;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -1183,6 +1399,29 @@
       align-self: flex-start;
       padding: 8px 12px;
       font-size: 11px;
+    }
+
+    .prod-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 6px 0 12px;
+    }
+
+    .prod-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(11, 42, 85, 0.08);
+      color: var(--cta);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .prod-car-btn {
@@ -1244,6 +1483,40 @@
 
       .prod-carousel {
         margin: 0 40px;
+      }
+
+      .prod-gallery {
+        min-height: 220px;
+      }
+
+      .prod-images {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        width: 100%;
+        height: 100%;
+      }
+
+      .prod-images img {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0;
+        transform: scale(.96);
+        pointer-events: none;
+      }
+
+      .prod-images img.active {
+        opacity: 1;
+        transform: scale(1);
       }
     }
 
@@ -1313,7 +1586,6 @@
       background: var(--cta);
 
       font-size: 11px;
-      font-family: "Space Mono", monospace;
       letter-spacing: .08em;
       text-transform: uppercase;
       font-weight: 700;
@@ -1603,7 +1875,6 @@
     .shipping-badge {
       margin-left: auto;
       flex-shrink: 0;
-      font-family: 'Space Mono', monospace;
       font-size: 11px;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -1840,13 +2111,13 @@
     }
 
     /* ---- logo hover ---- */
-    .logo-image {
+    /* .logo-image {
       transition: transform .35s var(--ease);
     }
 
     .logo:hover .logo-image {
       transform: rotate(-4deg) scale(1.05);
-    }
+    } */
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -2127,7 +2398,22 @@
       }
 
       .hero-ctas {
-        display: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin: 0 auto 28px;
+        padding: 0 20px;
+      }
+
+      .hero-ctas .btn,
+      .hero-ctas .btn-top {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        text-align: center;
       }
 
       .hero-visual {
@@ -2191,6 +2477,82 @@
       #nextBtn {
         right: 12px;
       }
+
+      .section-head {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .section-head h2,
+      .section-head p {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .specialty-inner {
+        text-align: center;
+      }
+
+      .specialty-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .specialty-badges {
+        justify-content: center;
+      }
+
+      .catalog-card {
+        align-items: center;
+        text-align: center;
+      }
+
+      .catalog-card .btn,
+      .catalog-card .btn-small {
+        align-self: center;
+      }
+
+      .cat-card,
+      .prod-card,
+      .banner-card {
+        align-items: center;
+        text-align: center;
+      }
+
+      .cat-card .btn-small,
+      .prod-card-body .btn-small,
+      .banner-content .btn-small,
+      .shipping-card .btn-small {
+        align-self: center;
+      }
+
+      .prod-card-body {
+        align-items: center;
+        text-align: center;
+      }
+
+      .prod-card-body h3,
+      .prod-card-body p {
+        text-align: center;
+      }
+
+      .prod-tags {
+        justify-content: center;
+      }
+
+      .banner-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .banner-content .banner-tag {
+        align-self: center;
+      }
+
+      .shipping-card {
+        align-items: center;
+        text-align: center;
+      }
     }
 
     @media (max-width:560px) {
@@ -2200,27 +2562,30 @@
       }
 
       .cat-card {
-        display: grid;
-        grid-template-rows: 44px 38px auto;
-        align-content: start;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         gap: 10px;
         min-height: 0;
         padding: 16px;
+        text-align: center;
       }
 
       .cat-icon {
         width: 44px;
         height: 44px;
-        margin: 0;
-        justify-self: start;
-        align-self: start;
+        margin: 0 0 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .cat-card h3 {
-        justify-self: start;
         margin: 0;
         font-size: 16px;
         line-height: 1.2;
+        text-align: center;
       }
 
       .cat-card p {
@@ -2228,12 +2593,11 @@
       }
 
       .cat-card .btn-small {
-        justify-self: start;
-        align-self: start;
         margin: 0;
         padding: 8px 10px;
         font-size: 0;
         line-height: 1;
+        align-self: center;
       }
 
       .cat-card .btn-small::before {
@@ -2256,6 +2620,109 @@
 
     .btn .quote-icon {
       font-size: .95em;
+    }
+
+    /* ---- visual decorativo do card Grife (crachá + ícones), robusto em qualquer largura ---- */
+    .banner-card--grife {
+      display: flex;
+      align-items: center;
+    }
+
+    .banner-card--grife .banner-content {
+      width: 70%;
+      flex: 0 0 70%;
+    }
+
+    .banner-card--grife .grife-visual {
+      position: relative;
+      inset: auto;
+      width: 30%;
+      flex: 0 0 30%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px 12px;
+    }
+
+    .banner-card--grife.banner-card::after {
+      display: none;
+    }
+
+    .grife-badge {
+      width: clamp(64px, 9vw, 92px);
+      height: clamp(64px, 9vw, 92px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--highlight), var(--cta));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 32px -12px rgba(0, 0, 0, .5);
+      flex-shrink: 0;
+    }
+
+    .grife-badge i {
+      font-size: clamp(26px, 3.4vw, 36px);
+      color: #fff;
+    }
+
+    .grife-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 180px;
+    }
+
+    .grife-chip {
+      width: clamp(32px, 4.2vw, 42px);
+      height: clamp(32px, 4.2vw, 42px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floaty 5s ease-in-out infinite;
+    }
+
+    .grife-chip i {
+      font-size: clamp(13px, 1.7vw, 17px);
+      color: #fff;
+    }
+
+    .grife-chip:nth-child(1) {
+      animation-delay: .1s;
+    }
+
+    .grife-chip:nth-child(2) {
+      animation-delay: .6s;
+    }
+
+    .grife-chip:nth-child(3) {
+      animation-delay: 1.1s;
+    }
+
+    .grife-chip:nth-child(4) {
+      animation-delay: 1.6s;
+    }
+
+    @media (max-width:900px) {
+      .banner-card--grife {
+        flex-direction: column;
+      }
+
+      .banner-card--grife .banner-content,
+      .banner-card--grife .grife-visual {
+        width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .banner-card--grife .grife-visual {
+        padding: 0 24px 32px;
+      }
     }
   </style>
 </head>
@@ -2285,12 +2752,20 @@
     </div>
     <div class="header-main">
       <div class="wrap">
-        <a href="#" class="logo logo-brand" aria-label="Cantu Confecções e Brindes, desde 1981"><img class="logo-image"
-            src="image (2).png" alt="Cantu Confecções e Brindes"><span class="logo-since"></span></a>
+        <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <a href="#hero" class="logo logo-brand" aria-label="Cantu Confecções e Brindes, desde 1981">
+          <img class="logo-image" src="./9999999.png" alt="Cantu Confecções e Brindes">
+        </a>
         <nav class="main-nav">
-          <a href="#hero">Início</a>
+          <a href="#">Início</a>
           <a href="#categorias">Categorias</a>
           <a href="#contato">Contato</a>
+          <a href="#grife">Grife Personalizada</a>
         </nav>
         <div class="header-actions">
           <div class="theme-switcher" aria-label="Escolher tema de cores">
@@ -2301,6 +2776,29 @@
         </div>
       </div>
     </div>
+
+    <nav class="mobile-nav-panel" id="mobileNavPanel" aria-label="Menu mobile">
+      <h3 class="mobile-panel-title">Cantu Brindes</h3>
+      <a href="#">Início</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#contato">Contato</a>
+      <a href="#grife">Grife Personalizada</a>
+      <a class="mobile-contact-item" href="tel:+554199537953">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.4 19.4 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.7a2 2 0 01-.5 2.1L8 9.7a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 012 2z" />
+        </svg>
+        <span>(41) 9953-7953</span>
+      </a>
+      <a class="mobile-contact-item" href="mailto:contato@cantubrindes.com.br">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z" />
+          <path d="M5 8l7 6 7-6" />
+        </svg>
+        <span>contato@cantubrindes.com.br</span>
+      </a>
+    </nav>
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
   </header>
 
   <main>
@@ -2317,9 +2815,10 @@
           </h1>
 
           <p class="lead load-in d3" id="heroDescription">
-            Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade
-            visual, em diversos modelos, cores e tamanhos. Solicite um orçamento rápido e atendimento direto pelo
-            WhatsApp.
+            Camisas polo personalizadas para equipes, eventos e ações corporativas.
+            Disponíveis em <strong style='color:#FFC857; text-transform:uppercase;'>TODOS OS TAMANHOS</strong> e <strong
+              style='color:#FFC857; text-transform:uppercase;'>TODAS AS CORES</strong> para sua marca.
+            Solicite um orçamento rápido e atendimento direto pelo WhatsApp.
           </p>
           <div class="hero-ctas load-in d4">
             <a class="btn" data-wa data-msg="Olá! Vi o site e gostaria de um orçamento de brindes corporativos."
@@ -2340,9 +2839,9 @@
 
             <div class="slide active" data-color="var(--highlight)"
               data-title="Camisas Polo que valorizam a <em>imagem</em> da sua empresa."
-              data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em diversos modelos, cores e tamanhos. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
+              data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em <strong style='color:#FFC857; text-transform:uppercase;'>TODAS AS CORES</strong> e <strong style='color:#FFC857; text-transform:uppercase;'>TODOS OS TAMANHOS</strong>. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
               <div class="slide-art" style="background:linear-gradient(160deg,#B8DCFF,var(--bg));">
-                <img class="polo-image" src="POLOcerto2.png" alt="Camisetas personalizadas">
+                <img class="polo-image" src="./images/vestuario/variaspolos.png" alt="Camisetas personalizadas">
               </div>
               <div class="slide-content">
                 <span class="slide-tag-label">POLOS</span>
@@ -2354,7 +2853,7 @@
               data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.">
 
               <div class="slide-art" style="background:linear-gradient(160deg,#C7E7FF,var(--bg));">
-                <img src="camisetas.png" alt="Camisetas personalizadas">
+                <img src="./images/vestuario/variascamisetas.png" alt="Camisetas personalizadas">
               </div>
 
               <div class="slide-content">
@@ -2470,8 +2969,7 @@
               Para o dia a dia da equipe — resistentes, funcionais e com a cara da marca.
             </p>
 
-            <a class="btn btn-small" data-wa data-msg="Olá! Vi Mochilas e Malas no site e gostaria de um orçamento."
-              href="#">
+            <a class="btn btn-small" href="#vestuario">
               <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Conferir
             </a>
           </article>
@@ -2488,7 +2986,7 @@
               Papelaria, cadernos e itens de mesa que fazem parte da rotina de trabalho.
             </p>
 
-            <a class="btn btn-small" data-wa data-msg="Olá! Vi Escritório no site e gostaria de um orçamento." href="#">
+            <a class="btn btn-small" href="#produtos">
               <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Conferir
             </a>
           </article>
@@ -2505,8 +3003,7 @@
               Presença constante no bolso e na mesa, com personalização de alta qualidade.
             </p>
 
-            <a class="btn btn-small" data-wa data-msg="Olá! Vi Canetas e Garrafas no site e gostaria de um orçamento."
-              href="#">
+            <a class="btn btn-small" href="#garrafas">
               <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Conferir
             </a>
           </article>
@@ -2523,7 +3020,7 @@
               Entre em contato conosco e crie a linha exclusiva de produtos da sua empresa.
             </p>
 
-            <a class="btn btn-small" data-wa data-msg="Olá! Vi Diversos no site e gostaria de um orçamento." href="#">
+            <a class="btn btn-small" href="#grife">
               <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Conferir
             </a>
           </article>
@@ -2532,7 +3029,7 @@
       </div>
     </section>
 
-    <section class="products-carousel" id="garrafas">
+    <section class="products-carousel" id="vestuario">
       <div class="wrap">
         <div class="section-head reveal">
           <h2>Vestuário</h2>
@@ -2556,9 +3053,13 @@
                     </svg>
                   </button>
                   <div class="prod-images">
-                    <img src="./images/garrafas/garrafa1.png" class="active" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/garrafas/garrafa2.png" alt="Jaqueta Clássica — detalhe">
-                    <img src="./images/garrafas/garrafa3.png" alt="Jaqueta Clássica — detalhe">
+                    <img src="./images/vestuario/camisasocial1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial2.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial3.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial4.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial5.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial6.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial7.png" alt="Jaqueta Clássica — frontal">
                   </div>
                   <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2568,11 +3069,9 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Camisa Social</h3>
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Camisa Social no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2586,7 +3085,10 @@
                     </svg>
                   </button>
                   <div class="prod-images">
-                    <img src="./images/garrafas/garrafa4.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/polo1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/polo2.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/polo3.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/polo4.png" alt="Jaqueta Clássica — frontal">
                   </div>
                   <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2596,11 +3098,15 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Camiseta Polo</h3>
+                  <div class="prod-tags" aria-label="Características da camiseta polo">
+                    <span class="prod-tag">Todos os tamanhos</span>
+                    <span class="prod-tag">Todas as cores</span>
+                  </div>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Camiseta Polo no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2614,8 +3120,8 @@
                     </svg>
                   </button>
                   <div class="prod-images">
-                    <img src="./images/garrafas/garrafa5.png" class="active" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/garrafas/garrafa6.png" alt="Jaqueta Clássica — detalhe">
+                    <img src="./images/vestuario/bone1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/bone2.png" alt="Jaqueta Clássica — detalhe">
                   </div>
                   <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2625,11 +3131,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
-                  <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                  <h3>Boné</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
+                  <a class="btn btn-small" data-wa data-msg="Olá! Vi o Boné no site e gostaria de um orçamento."
+                    href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2643,10 +3149,7 @@
                     </svg>
                   </button>
                   <div class="prod-images">
-                    <img src="./images/garrafas/garrafa7.png" class="active" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/garrafas/garrafa8.png" alt="Jaqueta Clássica — detalhe">
-                    <img src="./images/garrafas/garrafa9.png" alt="Jaqueta Clássica — detalhe">
-                    <img src="./images/garrafas/garrafa10.png" alt="Jaqueta Clássica — detalhe">
+                    <img src="./images/vestuario/jaquetaRefletiva.png" class="active" alt="Jaqueta Clássica — frontal">
                   </div>
                   <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2656,11 +3159,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Jaqueta Refletiva</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Jaqueta Refletiva no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2674,9 +3177,10 @@
                     </svg>
                   </button>
                   <div class="prod-images">
-                    <img src="./images/garrafas/garrafa11.png" class="active" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/garrafas/garrafa12.png" alt="Jaqueta Clássica — detalhe">
-                    <img src="./images/garrafas/garrafa13.png" alt="Jaqueta Clássica — detalhe">
+                    <img src="./images/vestuario/camiseta1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camiseta2.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camiseta3.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camiseta4.png" alt="Jaqueta Clássica — frontal">
                   </div>
                   <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2686,17 +3190,106 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
-                  <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                  <h3>Camisetas</h3>
+                  <div class="prod-tags" aria-label="Características das camisetas">
+                    <span class="prod-tag">Todos os tamanhos</span>
+                    <span class="prod-tag">Todas as cores</span>
+                  </div>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
+                  <a class="btn btn-small" data-wa data-msg="Olá! Vi as Camisetas no site e gostaria de um orçamento."
+                    href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
               </article>
 
+              <article class="prod-card">
+                <div class="prod-gallery" data-gallery>
+                  <button class="prod-img-btn prev" type="button" aria-label="Foto anterior">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="prod-images">
+                    <img src="./images/vestuario/cortavento1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/cortavento2.png" alt="Jaqueta Clássica — frontal">
+                  </div>
+                  <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                  <div class="prod-img-dots"></div>
+                </div>
+                <div class="prod-card-body">
+                  <h3>Jaqueta Corta Vento</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
+                  <a class="btn btn-small" data-wa
+                    data-msg="Olá! Vi a Jaqueta Corta Vento no site e gostaria de um orçamento." href="#">
+                    <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
+                  </a>
+                </div>
+              </article>
 
+              <article class="prod-card">
+                <div class="prod-gallery" data-gallery>
+                  <button class="prod-img-btn prev" type="button" aria-label="Foto anterior">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="prod-images">
+                    <img src="./images/vestuario/mangalonga1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/mangalonga2.png" alt="Jaqueta Clássica — frontal">
+                  </div>
+                  <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                  <div class="prod-img-dots"></div>
+                </div>
+                <div class="prod-card-body">
+                  <h3>Camiseta Manga Longa</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
+                  <a class="btn btn-small" data-wa
+                    data-msg="Olá! Vi a Camiseta Manga Longa no site e gostaria de um orçamento." href="#">
+                    <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
+                  </a>
+                </div>
+              </article>
+
+              <article class="prod-card">
+                <div class="prod-gallery" data-gallery>
+                  <button class="prod-img-btn prev" type="button" aria-label="Foto anterior">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="prod-images">
+                    <img src="./images/vestuario/moletomcapuz1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/moletomcapuz2.png" alt="Jaqueta Clássica — frontal">
+                  </div>
+                  <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                  <div class="prod-img-dots"></div>
+                </div>
+                <div class="prod-card-body">
+                  <h3>Moletom com Capuz</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
+                  <a class="btn btn-small" data-wa
+                    data-msg="Olá! Vi o Moletom com Capuz no site e gostaria de um orçamento." href="#">
+                    <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
+                  </a>
+                </div>
+              </article>
             </div>
           </div>
 
@@ -2744,11 +3337,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Mochila Executiva</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Mochila para Notebook 15.6</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Mochila para Notebook 15.6 no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2773,11 +3366,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Agenda Personalizada</h3>
-                  <p>Organização e elegância para acompanhar seus parceiros o ano todo, mantendo sua marca sempre
-                    presente.</p>
+                  <h3>Caderno de Anotações</h3>
+                  <!-- <p>Organização e elegância para acompanhar seus parceiros o ano todo, mantendo sua marca sempre
+                    presente.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Premium no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi o Caderno de Anotações no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2803,11 +3396,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Caneta Personalizada</h3>
-                  <p>A elegância do design aliada à utilidade diária para assinar grandes conquistas com a sua marca.
-                  </p>
-                  <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Premium no site e gostaria de um orçamento." href="#">
+                  <h3>Caneta</h3>
+                  <!-- <p>A elegância do design aliada à utilidade diária para assinar grandes conquistas com a sua marca.
+                  </p> -->
+                  <a class="btn btn-small" data-wa data-msg="Olá! Vi a Caneta no site e gostaria de um orçamento."
+                    href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2832,11 +3425,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Necessaire Personalizado</h3>
-                  <p>Praticidade e organização essencial para manter seus materiais sempre à mão com a visibilidade da
-                    sua marca.</p>
-                  <a class="btn btn-small" data-wa data-msg="Olá! Vi a Jaqueta Leve no site e gostaria de um orçamento."
-                    href="#">
+                  <h3>Necessaire em Algodão</h3>
+                  <!-- <p>Praticidade e organização essencial para manter seus materiais sempre à mão com a visibilidade da
+                    sua marca.</p> -->
+                  <a class="btn btn-small" data-wa
+                    data-msg="Olá! Vi a Necessaire em Algodão no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2860,11 +3453,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Caneta Personalizada</h3>
-                  <p>A elegância do design aliada à utilidade diária para assinar grandes conquistas com a sua marca.
-                  </p>
-                  <a class="btn btn-small" data-wa data-msg="Olá! Vi a Jaqueta Leve no site e gostaria de um orçamento."
-                    href="#">
+                  <h3>Caneta Esferográfica em Alumínio</h3>
+                  <!-- <p>A elegância do design aliada à utilidade diária para assinar grandes conquistas com a sua marca.
+                  </p> -->
+                  <a class="btn btn-small" data-wa
+                    data-msg="Olá! Vi a Caneta Esferográfica em Alumínio no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2917,11 +3510,12 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Garrafa em Alumínio Reciclado 600ml</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Garrafa em Alumínio Reciclado 600ml no site e gostaria de um orçamento."
+                    href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2945,11 +3539,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Garrafa Térmica Inox 500ml</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Garrafa Térmica Inox 500ml no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -2974,11 +3568,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Garrafa em Aço Inox 780ml</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Garrafa em Aço Inox 780ml no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -3005,11 +3599,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Garrafa em Aço Inox 780ml</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                    destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi a Garrafa em Aço Inox 780ml no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -3025,6 +3619,7 @@
                   <div class="prod-images">
                     <img src="./images/garrafas/garrafa11.png" class="active" alt="Jaqueta Clássica — frontal">
                     <img src="./images/garrafas/garrafa12.png" alt="Jaqueta Clássica — detalhe">
+                    <img src="./images/garrafas/garrafa14.png" alt="Jaqueta Clássica — detalhe">
                     <img src="./images/garrafas/garrafa13.png" alt="Jaqueta Clássica — detalhe">
                   </div>
                   <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
@@ -3035,11 +3630,11 @@
                   <div class="prod-img-dots"></div>
                 </div>
                 <div class="prod-card-body">
-                  <h3>Garrafa</h3>
-                  <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
-                    destaque.</p>
+                  <h3>Copo Térmico 500ml</h3>
+                  <!-- <p>Praticidade e estilo no dia a dia dos seus clientes e colaboradores com a marca da sua empresa em
+                      destaque.</p> -->
                   <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Jaqueta Clássica no site e gostaria de um orçamento." href="#">
+                    data-msg="Olá! Vi o Copo Térmico 500ml no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -3059,68 +3654,71 @@
     </section>
 
     <!-- Banners de Produtos ocupando toda a largura da tela e empilhados -->
-    <section class="product-banners">
+    <section class="product-banners" id="grife">
       <div class="wrap">
         <div class="banner-grid">
 
           <article class="banner-card banner-card--grife">
 
-  <div class="banner-content">
-    <h3>
-      Grife Personalizada
-    </h3>
-
-    <p>
-      Fortaleça a identidade da sua empresa com uma grife exclusiva para os seus colaboradores.
-
-      Desenvolvemos uma loja personalizada com uniformes, vestuário corporativo e brindes exclusivos,
-      permitindo que seus colaboradores adquiram produtos da empresa de forma prática e organizada. Além de
-      valorizar a marca internamente, essa iniciativa fortalece o sentimento de pertencimento, aumenta o
-      engajamento da equipe e transforma cada colaborador em um embaixador da sua empresa.
-
-      Sua marca presente no dia a dia, dentro e fora do ambiente de trabalho.
-    </p>
-
-    <a class="btn btn-small" data-wa
-      data-msg="Olá! Vi a Grife Personalizada no site e gostaria de um orçamento." href="#">
-      <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
-    </a>
-
-  </div>
-
-  <div class="grife-visual">
-    <div class="grife-badge"><i class="fa-solid fa-shirt"></i></div>
-    <div class="grife-chips">
-      <div class="grife-chip"><i class="fa-solid fa-tag"></i></div>
-      <div class="grife-chip"><i class="fa-solid fa-bag-shopping"></i></div>
-      <div class="grife-chip"><i class="fa-solid fa-mug-hot"></i></div>
-      <div class="grife-chip"><i class="fa-solid fa-briefcase"></i></div>
-    </div>
-  </div>
-
-</article>
-
-
-
-          <article class="banner-card">
-
             <div class="banner-content">
-              <h3>Jaquetas Refletivas</h3>
+              <h3>Grife Personalizada</h3>
 
-              <p>
-                Segurança, conforto e alta visibilidade para sua equipe, com personalização exclusiva para sua empresa.
+              <p style="color: white;">
+                Fortaleça a identidade da sua empresa com uma grife exclusiva para os seus colaboradores.
+                Desenvolvemos uma loja personalizada com uniformes, vestuário corporativo e brindes exclusivos,
+                permitindo que seus colaboradores adquiram produtos da empresa de forma prática e organizada.
+                Além de valorizar a marca internamente, essa iniciativa fortalece o sentimento de pertencimento,
+                aumenta o engajamento da equipe e transforma cada colaborador em um embaixador da sua empresa.
+                Sua marca presente no dia a dia, dentro e fora do ambiente de trabalho.
               </p>
+            </div>
 
-              <a class="btn btn-small" data-wa
-                data-msg="Olá! Vi Jaquetas Refletivas no site e gostaria de um orçamento." href="#">
-                <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
-              </a>
+            <div class="grife-visual">
+
+              <div class="grife-showcase" style="    margin-left: -150px;">
+
+                <div class="showcase-header">
+                  <i class="fa-solid fa-store"></i>
+                  <span>Loja da Empresa</span>
+                </div>
+
+                <div class="showcase-grid">
+
+                  <div class="showcase-item">
+                    <i class="fa-solid fa-shirt"></i>
+                    <span>Camisas</span>
+                  </div>
+
+                  <div class="showcase-item">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Brindes</span>
+                  </div>
+
+                  <div class="showcase-item">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <span>Canecas</span>
+                  </div>
+
+                  <div class="showcase-item">
+                    <i class="fa-solid fa-tag"></i>
+                    <span>Grife</span>
+                  </div>
+
+                </div>
+
+                <div class="showcase-footer">
+                  <i class="fa-solid fa-users"></i>
+                  <span>Exclusivo para colaboradores</span>
+                </div>
+
+              </div>
 
             </div>
 
-            <img src="jaqueta.png" alt="Jaquetas refletivas personalizadas">
-
           </article>
+
+
+
 
         </div>
       </div>
@@ -3147,7 +3745,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer id="contato">
 
     <div class="footer-grid">
 
@@ -3162,7 +3760,10 @@
         <div class="footer-social">
           <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
           <a href="https://www.instagram.com/cantuconfeccoes/"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=guilherme.sanchez1910@gmail.com" target="_blank"
+            rel="noreferrer noopener"><i class="fa-solid fa-envelope"></i></a>
         </div>
+
 
       </div>
 
@@ -3171,10 +3772,10 @@
         <h4>Categorias</h4>
 
         <ul>
-          <li><a href="#">Mochilas</a></li>
-          <li><a href="#">Canetas</a></li>
-          <li><a href="#">Escritório</a></li>
-          <li><a href="#">Uniformes</a></li>
+          <li><a href="#vestuario">Vestuário</a></li>
+          <li><a href="#produtos">Escritório</a></li>
+          <li><a href="#garrafas">Garrafas</a></li>
+          <li><a href="#grife">Grife Personalizada</a></li>
         </ul>
 
       </div>
@@ -3269,7 +3870,7 @@
         '--ink': '#0D2A55',
         '--ink-dark': '#081D3A',
         '--text-muted': 'rgba(8, 27, 58, 0.64)',
-        '--header-bg': '#0B3D82',
+        '--header-bg': '#1f6feb',
         '--footer-bg': '#051C48',
         '--footer-text': 'rgba(255, 255, 255, 0.92)',
         '--paper': '#FFFFFF',
@@ -3310,6 +3911,35 @@
     document.querySelectorAll('.theme-button').forEach(btn => {
       btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
     });
+
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNavPanel = document.getElementById('mobileNavPanel');
+    const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
+
+    function closeMobileMenu() {
+      mobileNavPanel?.classList.remove('is-open');
+      mobileNavBackdrop?.classList.remove('is-open');
+      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      mobileMenuToggle?.setAttribute('aria-label', 'Abrir menu');
+    }
+
+    if (mobileMenuToggle && mobileNavPanel && mobileNavBackdrop) {
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = mobileNavPanel.classList.toggle('is-open');
+        mobileNavBackdrop.classList.toggle('is-open', isOpen);
+        mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+      });
+
+      mobileNavBackdrop.addEventListener('click', closeMobileMenu);
+      mobileNavPanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMobileMenu();
+      });
+    }
 
     applyTheme('light');
 
@@ -3454,24 +4084,33 @@
       if (images.length <= 1) {
         if (prevBtn) prevBtn.style.display = 'none';
         if (nextBtn) nextBtn.style.display = 'none';
+        if (dotsWrap) dotsWrap.style.display = 'none';
         return;
       }
 
-      images.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Ir para a foto ${i + 1}`);
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToImage(i));
-        dotsWrap.appendChild(dot);
+      images.forEach((image, index) => {
+        image.classList.toggle('active', index === 0);
       });
 
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        images.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Ir para a foto ${i + 1}`);
+          if (i === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => goToImage(i));
+          dotsWrap.appendChild(dot);
+        });
+      }
+
       function goToImage(i) {
+        if (!images.length) return;
         images[imgCurrent].classList.remove('active');
-        dotsWrap.children[imgCurrent].classList.remove('active');
+        if (dotsWrap?.children[imgCurrent]) dotsWrap.children[imgCurrent].classList.remove('active');
         imgCurrent = (i + images.length) % images.length;
         images[imgCurrent].classList.add('active');
-        dotsWrap.children[imgCurrent].classList.add('active');
+        if (dotsWrap?.children[imgCurrent]) dotsWrap.children[imgCurrent].classList.add('active');
       }
 
       if (prevBtn) {
