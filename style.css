@@ -351,3 +351,45 @@
     padding: 0;
     align-self: flex-start; /* garante o mesmo alinhamento do título */
 }
+
+@media (max-width: 390px) {
+
+      .prod-card {
+          border-radius: 12px;
+      }
+
+      .prod-gallery {
+          min-height: 180px;
+      }
+
+      .prod-images {
+          padding: 8px;
+      }
+
+      .prod-images img {
+          max-width: 88%;
+          max-height: 88%;
+      }
+
+      .prod-card-body {
+          padding: 12px;
+      }
+
+      .prod-card-body h3 {
+          font-size: 16px;
+          line-height: 1.2;
+          margin-bottom: 12px;
+      }
+
+      .prod-card-body .btn-small {
+          width: 100%;
+          justify-content: center;
+          padding: 10px 8px;
+          font-size: 11px;
+      }
+
+      .prod-img-btn {
+          width: 24px;
+          height: 24px;
+      }
+  }
