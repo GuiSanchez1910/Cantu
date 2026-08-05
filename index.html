@@ -500,7 +500,7 @@
         align-items: center;
         gap: 10px;
         height: auto;
-        padding: 12px 16px;
+        padding: 0px 16px;
       }
 
       .logo {
@@ -1499,6 +1499,7 @@
       }
 
       .prod-images {
+        margin: 12px;
         position: absolute;
         inset: 0;
         display: flex;
@@ -2824,12 +2825,15 @@
         </button>
 
         <a href="#hero" class="logo logo-brand" aria-label="Cantu Confecções e Brindes, desde 1981">
-          <img class="logo-image" src="./9999999.png" alt="Cantu Confecções e Brindes">
+          <picture>
+    <source media="(max-width: 768px)" srcset="./logo.png">
+    <img class="logo-image" src="./9999999.png" alt="Cantu Confecções e Brindes">
+</picture>
 
           <div class="mobile-logo-text">
               <div class="mobile-logo-text">
-                <strong style="color: white;" class="mobile-logo-title">CANTU BRINDES</strong>
-                <small style="color: white;" class="mobile-logo-subtitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DESDE 1981</small>
+                <strong style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="mobile-logo-title">CANTU BRINDES</strong>
+                <small style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="mobile-logo-subtitle">&nbsp;&nbsp;&nbsp;DESDE 1981</small>
             </div>
           </div>
       </a>
