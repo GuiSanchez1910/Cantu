@@ -230,3 +230,83 @@
     max-width:340px;
     box-sizing:border-box;
 }
+
+@media (max-width: 768px) {
+    .shipping-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .shipping-text {
+        text-align: center;
+    }
+
+    .shipping-text h3,
+    .shipping-text p {
+        text-align: center;
+    }
+
+    .shipping-badge {
+        align-self: center;
+    }
+
+    .shipping-icon {
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .banner-card--grife {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        padding: 35px 20px;
+    }
+
+    .banner-card--grife .banner-content {
+        width: 100%;
+        max-width: 650px;
+    }
+
+    .banner-card--grife .banner-content h3,
+    .banner-card--grife .banner-content p {
+        text-align: center;
+    }
+
+    .banner-card--grife .grife-visual {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .banner-card--grife .grife-showcase {
+        margin-left: 0 !important;
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .banner-card--grife .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .banner-card--grife .showcase-item {
+        padding: 14px 10px;
+    }
+
+    .banner-card--grife .showcase-item i {
+        font-size: 1.4rem;
+    }
+
+    .banner-card--grife .showcase-footer {
+        justify-content: center;
+        text-align: center;
+    }
+}
