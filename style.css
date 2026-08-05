@@ -310,3 +310,44 @@
         text-align: center;
     }
 }
+
+
+
+
+.mobile-logo-text {
+    display: none;
+}
+
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* distância uniforme entre logo e texto */
+    text-decoration: none;
+}
+
+.mobile-logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* alinha as duas linhas pela esquerda */
+    line-height: 1;
+}
+
+.mobile-logo-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #05152E;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-logo-subtitle {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #6b7280;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin: 4px 0 0 0; /* apenas um pequeno espaço acima */
+    padding: 0;
+    align-self: flex-start; /* garante o mesmo alinhamento do título */
+}
