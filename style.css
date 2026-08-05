@@ -393,3 +393,10 @@
           height: 24px;
       }
   }
+
+  @media (hover: none) and (pointer: coarse) {
+    .products-carousel .prod-card:hover {
+        transform: none;
+        box-shadow: 0 10px 24px -16px rgba(8, 27, 58, 0.18);
+    }
+}
