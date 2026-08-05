@@ -575,7 +575,7 @@
 
 @media (max-width:768px){
     .logo-image{
-        height:70px !important;
+        height:-webkit-fill-available;
         width:auto;
     }
 }
