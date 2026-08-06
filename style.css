@@ -599,4 +599,141 @@
   color: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.top-header-v2{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:90px;
+    width:100%;
+    background:#081B3A;
+}
 
+.top-header-v2__logo{
+    position:absolute;
+    left:30px;
+    display:flex;
+    align-items:center;
+    z-index:2;
+}
+
+.top-header-v2__logo img{
+    height:56px;
+    width:auto;
+    display:block;
+}
+
+.top-header-v2__nav{
+    display:flex;
+    align-items:center;
+    gap:42px;
+}
+
+.top-header-v2__nav a{
+    position:relative;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s;
+}
+
+.top-header-v2__nav a:hover{
+    color:#E8C66A;
+}
+
+.top-header-v2__nav a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-8px;
+    width:0;
+    height:3px;
+    background:#E8C66A;
+    border-radius:999px;
+    transform:translateX(-50%);
+    transition:.25s;
+}
+
+.top-header-v2__nav a:hover::after{
+    width:100%;
+}
+
+@media (max-width:768px){
+
+    .top-header-v2{
+        justify-content:space-between;
+        padding:0 16px;
+        height:72px;
+    }
+
+    .top-header-v2__logo{
+        position:static;
+    }
+
+    .top-header-v2__logo img{
+        height:46px;
+    }
+
+    .top-header-v2__nav{
+        display:none;
+    }
+}
+
+
+
+/* Configura o container para espalhar os 3 blocos igualmente */
+.header-main .wrap {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Força o menu a ficar centralizado entre os dois lados */
+.top-header-v2__nav {
+  margin: 0 auto !important;
+}
+
+/* ELEMENTO INVISÍVEL */
+.header-spacer {
+  /* Largura fixa aproximada da sua logo ou ajuste para o tamanho exato da logo */
+  width: 300px; 
+  height: 1px;
+  visibility: hidden; /* Fica totalmente invisível e sem interação */
+  pointer-events: none;
+}
+
+/* No Mobile, esconde o espaçador para não empurrar nada */
+@media (max-width: 768px) {
+  .header-spacer {
+    display: none !important;
+  }
+
+  .top-header-v2__nav {
+    display: none !important;
+  }
+
+  /* Garante que o espaçador invisível também suma no mobile */
+  .header-spacer {
+    display: none !important;
+  }
+
+  /* Exibe o botão do menu hambúrguer */
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+}
+
+/* Sobrescreve com máxima especificidade */
+@media screen and (max-width: 768px) {
+  div.header-main nav.top-header-v2__nav,
+  body .top-header-v2__nav,
+  .top-header-v2__nav {
+    display: none !important;
+    visibility: hidden !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+}
