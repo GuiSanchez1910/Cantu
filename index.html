@@ -344,7 +344,7 @@
       height: 15px;
     }
 
-    .header-main {
+    /* .header-main {
       background: var(--header-bg);
       color: white;
       backdrop-filter: blur(10px);
@@ -357,7 +357,65 @@
       justify-content: space-between;
       height: 78px;
       gap: 16px;
-    }
+    } */
+
+    .header-main {
+  background: var(--header-bg);
+  color: white;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-main .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribui os itens nas pontas */
+  height: 78px;
+  gap: 16px;
+  position: relative; /* Necessário para centralizar o nav sem mover a logo */
+}
+
+/* 1. LOGO FIXA NA ESQUERDA */
+.header-main .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  z-index: 2; /* Garante que fique clicável por cima */
+      justify-content: flex-start;
+}
+
+/* 2. MENU CENTRALIZADO NO MEIO DA TELA */
+@media (min-width: 769px) {
+  .header-main .main-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+  }
+  
+  .mobile-menu-toggle {
+    display: none; /* Esconde o botão do menu no desktop */
+  }
+}
+
+/* Ajustes no Mobile (Abaixo de 768px) */
+@media (max-width: 768px) {
+  .header-main .wrap {
+    justify-content: space-between;
+  }
+
+  .header-main .main-nav {
+    display: none; /* Esconde o menu normal no celular para usar o botão */
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
 
     .mobile-menu-toggle {
       display: none;
@@ -1485,7 +1543,7 @@
       .prod-track {
         width: 212px;
       }
-      
+
       .prod-card {
         flex: 0 0 calc(100% - 0px);
       }
@@ -2738,58 +2796,58 @@
     @media (max-width: 390px) {
 
       .prod-card {
-          border-radius: 12px;
+        border-radius: 12px;
       }
 
       .prod-gallery {
-          min-height: 180px;
+        min-height: 180px;
       }
 
       .prod-images {
-          padding: 8px;
+        padding: 8px;
       }
 
       .prod-images img {
-          max-width: 88%;
-          max-height: 88%;
+        max-width: 88%;
+        max-height: 88%;
       }
 
       .prod-card-body {
-          padding: 12px;
+        padding: 12px;
       }
 
       .prod-card-body h3 {
-          font-size: 16px;
-          line-height: 1.2;
-          margin-bottom: 12px;
+        font-size: 16px;
+        line-height: 1.2;
+        margin-bottom: 12px;
       }
 
       .prod-card-body .btn-small {
-          width: 100%;
-          justify-content: center;
-          padding: 10px 8px;
-          font-size: 11px;
+        width: 100%;
+        justify-content: center;
+        padding: 10px 8px;
+        font-size: 11px;
       }
 
       .prod-img-btn {
-          width: 24px;
-          height: 24px;
+        width: 24px;
+        height: 24px;
       }
-  }
+    }
 
-  @media (hover: none) and (pointer: coarse) {
-    .products-carousel .prod-card:hover {
+    @media (hover: none) and (pointer: coarse) {
+      .products-carousel .prod-card:hover {
         transform: none;
         box-shadow: 0 10px 24px -16px rgba(8, 27, 58, 0.18);
+      }
     }
-}
 
-@media (max-width: 768px) {
-    .products-carousel .prod-card:hover {
+    @media (max-width: 768px) {
+      .products-carousel .prod-card:hover {
         transform: none;
         box-shadow: 0 10px 24px -16px rgba(8, 27, 58, 0.18);
+      }
     }
-}
   </style>
 </head>
 
@@ -2816,42 +2874,36 @@
           </svg>Frete grátis</span>
       </div>
     </div>
-    <div class="header-main">
-      <div class="wrap">
-        <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+  <div class="header-main">
+  <div class="wrap">
+    
+    <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-        <a href="#hero" class="logo logo-brand" aria-label="Cantu Confecções e Brindes, desde 1981">
-          <picture>
-    <source media="(max-width: 768px)" srcset="./logo.png">
-    <img class="logo-image" src="./9999999.png" alt="Cantu Confecções e Brindes">
-</picture>
+    <a href="#hero" class="logo logo-brand" aria-label="Cantu Confecções e Brindes, desde 1981">
+      <picture>
+        <source media="(max-width: 768px)" srcset="./logo.png">
+        <img class="logo-image" src="./9999999.png" alt="Cantu Confecções e Brindes">
+      </picture>
 
-          <div class="mobile-logo-text">
-              <div class="mobile-logo-text">
-                <strong style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="mobile-logo-title">CANTU BRINDES</strong>
-                <small style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="mobile-logo-subtitle">&nbsp;&nbsp;&nbsp;DESDE 1981</small>
-            </div>
-          </div>
-      </a>
-        <nav class="main-nav">
-          <a href="#">Início</a>
-          <a href="#categorias">Categorias</a>
-          <a href="#contato">Contato</a>
-          <a href="#grife">Grife Personalizada</a>
-        </nav>
-        <div class="header-actions">
-          <div class="theme-switcher" aria-label="Escolher tema de cores">
-            <button type="button" class="theme-button active" data-theme="light">Azul claro</button>
-            <button type="button" class="theme-button" data-theme="medium">Azul médio</button>
-            <button type="button" class="theme-button" data-theme="dark">Azul escuro</button>
-          </div>
-        </div>
+      <div class="mobile-logo-text">
+        <strong class="mobile-logo-title">CANTU BRINDES</strong>
+        <small class="mobile-logo-subtitle">DESDE 1981</small>
       </div>
-    </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#">Início</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#contato">Contato</a>
+      <a href="#grife">Grife Personalizada</a>
+    </nav>
+    
+  </div>
+</div>
 
     <nav class="mobile-nav-panel" id="mobileNavPanel" aria-label="Menu mobile">
       <h3 class="mobile-panel-title">Cantu Brindes</h3>
@@ -2887,7 +2939,7 @@
       <div class="wrap" style="background-color: #05152E !important;">
         <div class="hero-copy">
           <h1 class="load-in d2" id="heroTitle">
-            CAMISAS POLO QUE VALORIZAM A  <em>IMAGEM</em> DA SUA EMPRESA
+            CAMISAS POLO
           </h1>
 
           <p class="lead load-in d3" id="heroDescription">
@@ -2914,40 +2966,39 @@
             <div class="dots" id="dots"></div>
 
             <div class="slide active" data-color="var(--gold)"
-              data-title= "CAMISAS POLO QUE VALORIZAM A  <em>IMAGEM</em> DA SUA EMPRESA."
-            data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em TODAS AS CORES e todos OS TAMANHOS. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
+              data-title="CAMISAS POLO"
+              data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em TODAS AS CORES e todos OS TAMANHOS. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
               <div class="slide-art" style="background: #05152E">
                 <img class="polo-image" src="./images/vestuario/variaspolos2.png" alt="Camisetas personalizadas">
               </div>
-              <div class="slide-content">
+              <!-- <div class="slide-content">
                 <span class="slide-tag-label">POLOS</span>
-              </div>
+              </div> -->
             </div>
 
             <div class="slide" data-color="var(--cta)"
-              data-title="CAMISETAS PERSONALIZADAS QUE DESTACAM SUA <em>MARCA</em>"
-              data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.
+              data-title="CAMISETAS PERSONALIZADAS" data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.
               ">
 
               <div class="slide-art" style="background:#05152E;">
                 <img src="./images/vestuario/variascamisetas.png" alt="Camisetas personalizadas">
               </div>
 
-              <div class="slide-content">
+              <!-- <div class="slide-content">
                 <span class="slide-tag-label">Camisetas Personalizadas</span>
-              </div>
+              </div> -->
 
             </div>
 
             <div class="slide" data-color="var(--gold)"
-              data-title="KITS CORPORATIVOS PARA TORNAR CADA CHEGADA <em>ESPECIAL</em>"
+              data-title="KITS CORPORATIVOS"
               data-description="Monte kits de escritório personalizados para integrar novos colaboradores, presentear clientes e fortalecer a cultura da sua empresa.">
               <div class="slide-art" style="background:#05152E">
                 <img src="./images/escritorio/kit.png" alt="Kit corporativo personalizado">
               </div>
-              <div class="slide-content">
+              <!-- <div class="slide-content">
                 <span class="slide-tag-label">Kits de escritório</span>
-              </div>
+              </div> -->
             </div>
 
             <div class="carousel-controls">
@@ -3130,38 +3181,6 @@
                     </svg>
                   </button>
                   <div class="prod-images">
-                    <img src="./images/vestuario/camisasocial1.png" class="active" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/vestuario/camisasocial2.png" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/vestuario/camisasocial3.png" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/vestuario/camisasocial4.png" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/vestuario/camisasocial5.png" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/vestuario/camisasocial6.png" alt="Jaqueta Clássica — frontal">
-                    <img src="./images/vestuario/camisasocial7.png" alt="Jaqueta Clássica — frontal">
-                  </div>
-                  <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 6l6 6-6 6" />
-                    </svg>
-                  </button>
-                  <div class="prod-img-dots"></div>
-                </div>
-                <div class="prod-card-body">
-                  <h3>Camisa Social</h3>
-                  <a class="btn btn-small" data-wa
-                    data-msg="Olá! Vi a Camisa Social no site e gostaria de um orçamento." href="#">
-                    <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
-                  </a>
-                </div>
-              </article>
-
-              <article class="prod-card">
-                <div class="prod-gallery" data-gallery>
-                  <button class="prod-img-btn prev" type="button" aria-label="Foto anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                  </button>
-                  <div class="prod-images">
                     <img src="./images/vestuario/polo1.png" class="active" alt="Jaqueta Clássica — frontal">
                     <img src="./images/vestuario/polo2.png" alt="Jaqueta Clássica — frontal">
                     <img src="./images/vestuario/polo3.png" alt="Jaqueta Clássica — frontal">
@@ -3184,6 +3203,38 @@
                     destaque.</p> -->
                   <a class="btn btn-small" data-wa
                     data-msg="Olá! Vi a Camiseta Polo no site e gostaria de um orçamento." href="#">
+                    <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
+                  </a>
+                </div>
+              </article>
+
+              <article class="prod-card">
+                <div class="prod-gallery" data-gallery>
+                  <button class="prod-img-btn prev" type="button" aria-label="Foto anterior">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="prod-images">
+                    <img src="./images/vestuario/camisasocial1.png" class="active" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial2.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial3.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial4.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial5.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial6.png" alt="Jaqueta Clássica — frontal">
+                    <img src="./images/vestuario/camisasocial7.png" alt="Jaqueta Clássica — frontal">
+                  </div>
+                  <button class="prod-img-btn next" type="button" aria-label="Próxima foto">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                  <div class="prod-img-dots"></div>
+                </div>
+                <div class="prod-card-body">
+                  <h3>Camisa Social</h3>
+                  <a class="btn btn-small" data-wa
+                    data-msg="Olá! Vi a Camisa Social no site e gostaria de um orçamento." href="#">
                     <i class="fa-solid fa-pen-to-square quote-icon" aria-hidden="true"></i> Solicitar Orçamento
                   </a>
                 </div>
@@ -3824,78 +3875,86 @@
 
   <footer id="contato">
 
-    <div class="footer-grid">
+  <div class="footer-grid">
 
-      <div>
+    <!-- Theme Switcher centralizado em linha via estilos inline -->
+    <div class="header-actions" style="grid-column: 1 / -1; display: flex; justify-content: center; margin-bottom: 20px;">
+      <div class="theme-switcher" aria-label="Escolher tema de cores" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
+        <button type="button" class="theme-button active" data-theme="light">Azul claro</button>
+        <button type="button" class="theme-button" data-theme="medium">Azul médio</button>
+        <button type="button" class="theme-button" data-theme="dark">Azul escuro</button>
+      </div>
+    </div>
 
-        <img src="logo.png" class="footer-logo">
+    <div>
 
-        <p class="footer-about">
-          Brindes personalizados, uniformes, mochilas e produtos promocionais para fortalecer sua marca.
-        </p>
+      <img src="logo.png" class="footer-logo" alt="Logo Cantu">
 
-        <div class="footer-social">
-          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="https://www.instagram.com/cantuconfeccoes/"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=guilherme.sanchez1910@gmail.com" target="_blank"
-            rel="noreferrer noopener"><i class="fa-solid fa-envelope"></i></a>
+      <p class="footer-about">
+        Brindes personalizados, uniformes, mochilas e produtos promocionais para fortalecer sua marca.
+      </p>
+
+      <div class="footer-social">
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/cantuconfeccoes/"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=guilherme.sanchez1910@gmail.com" target="_blank"
+          rel="noreferrer noopener"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+
+    </div>
+
+    <div>
+
+      <h4>Categorias</h4>
+
+      <ul>
+        <li><a href="#vestuario">Vestuário</a></li>
+        <li><a href="#produtos">Escritório</a></li>
+        <li><a href="#garrafas">Garrafas</a></li>
+        <li><a href="#grife">Grife Personalizada</a></li>
+      </ul>
+
+    </div>
+
+    <div>
+
+      <h4>Contato</h4>
+
+      <div class="footer-contact">
+
+        <div>
+          <i class="fa-solid fa-phone"></i>
+          (41) 9953-7953
         </div>
 
+        <div>
+          <i class="fa-brands fa-whatsapp"></i>
+          (41) 9953-7953
+        </div>
 
-      </div>
+        <div>
+          <i class="fa-solid fa-envelope"></i>
+          atendimentocantu@gmail.com.br
+        </div>
 
-      <div>
-
-        <h4>Categorias</h4>
-
-        <ul>
-          <li><a href="#vestuario">Vestuário</a></li>
-          <li><a href="#produtos">Escritório</a></li>
-          <li><a href="#garrafas">Garrafas</a></li>
-          <li><a href="#grife">Grife Personalizada</a></li>
-        </ul>
-
-      </div>
-
-      <div>
-
-        <h4>Contato</h4>
-
-        <div class="footer-contact">
-
-          <div>
-            <i class="fa-solid fa-phone"></i>
-            (41) 9953-7953
-          </div>
-
-          <div>
-            <i class="fa-brands fa-whatsapp"></i>
-            (41) 9953-7953
-          </div>
-
-          <div>
-            <i class="fa-solid fa-envelope"></i>
-            atendimentocantu@gmail.com.br
-          </div>
-
-          <div>
-            <i class="fa-solid fa-location-dot"></i>
-            Curitiba - PR
-          </div>
-
+        <div>
+          <i class="fa-solid fa-location-dot"></i>
+          Curitiba - PR
         </div>
 
       </div>
 
     </div>
 
-    <div class="footer-bottom">
+  </div>
 
-      <span>© 2026 Cantu Confecções e Brindes. Todos os direitos reservados.</span>
+  <div class="footer-bottom">
 
-    </div>
+    <span>© 2026 Cantu Confecções e Brindes. Todos os direitos reservados.</span>
 
-  </footer>
+  </div>
+
+</footer>
 
   <div class="wa-fallback" id="waFallback">
     <span>Não conseguiu abrir o WhatsApp? Copie nosso número:<br><strong>(41) 9953-7953</strong></span>

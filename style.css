@@ -579,3 +579,24 @@
         width:auto;
     }
 }
+
+/* Oculta o texto por padrão (desktop) */
+.mobile-logo-text {
+  display: none;
+}
+
+/* Exibe o texto apenas em telas menores (mobile) */
+@media (max-width: 768px) {
+  .mobile-logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Estilos de fonte organizados (boa prática para limpar o HTML) */
+.mobile-logo-title,
+.mobile-logo-subtitle {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
