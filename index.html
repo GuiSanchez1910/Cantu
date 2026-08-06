@@ -3002,15 +3002,20 @@
           <div class="carousel tag" id="carousel" style="color:var(--ink-dark)">
             <div class="dots" id="dots"></div>
 
-            <div class="slide active" data-color="var(--gold)" data-title="CAMISAS POLO"
-              data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em TODAS AS CORES e todos OS TAMANHOS. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
+           <div class="slide active"
+              data-color="var(--gold)"
+              data-title="CAMISAS POLO"
+              data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em <span style='color:#FFC857;font-weight:700;'>TODAS AS CORES</span> e todos <span style='color:#FFC857;font-weight:700;'>OS TAMANHOS</span>. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
+
               <div class="slide-art" style="background: #05152E">
-                <img class="polo-image" src="./images/vestuario/variaspolos2.png" alt="Camisetas personalizadas">
+                  <img class="polo-image" src="./images/vestuario/variaspolos2.png" alt="Camisetas personalizadas">
               </div>
+
               <div class="slide-content">
-                <span class="slide-tag-label" style="color: black; font-weight: bold;">TODAS AS CORES</span>&nbsp;<span class="slide-tag-label dois" style="color: black; font-weight: bold;">TODOS OS TAMANHOS</span>
+                  <span class="slide-tag-label" style="color: black; font-weight: bold;">TODAS AS CORES</span>&nbsp;
+                  <span class="slide-tag-label dois" style="color: black; font-weight: bold;">TODOS OS TAMANHOS</span>
               </div>
-            </div>
+          </div>
 
             <div class="slide" data-color="var(--cta)" data-title="CAMISETAS PERSONALIZADAS" data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.
               ">
@@ -4162,8 +4167,7 @@
       slides[current].classList.add('active');
       dotsWrap.children[current].classList.add('active');
       heroTitle.innerHTML = slides[current].dataset.title;
-      heroDescription.textContent = slides[current].dataset.description;
-    }
+heroDescription.innerHTML = slides[current].dataset.description;    }
     document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
     document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
 
@@ -4324,6 +4328,7 @@
       glow.style.left = (e.clientX - rect.left) + 'px';
       glow.style.top = (e.clientY - rect.top) + 'px';
     });
+
   </script>
 
 </body>
