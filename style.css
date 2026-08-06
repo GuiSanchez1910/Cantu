@@ -768,7 +768,7 @@
 /* Terceira linha (com recuo maior) */
 .line-3 {
   font-size: 0.75rem;
-  margin-left: 2px; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
+  margin-left: 25px; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
   margin-top: 2px;
 }
 
