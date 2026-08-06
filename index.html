@@ -360,62 +360,67 @@
     } */
 
     .header-main {
-  background: var(--header-bg);
-  color: white;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
+      background: var(--header-bg);
+      color: white;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-.header-main .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Distribui os itens nas pontas */
-  height: 78px;
-  gap: 16px;
-  position: relative; /* Necessário para centralizar o nav sem mover a logo */
-}
+    .header-main .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* Distribui os itens nas pontas */
+      height: 78px;
+      gap: 16px;
+      position: relative;
+      /* Necessário para centralizar o nav sem mover a logo */
+    }
 
-/* 1. LOGO FIXA NA ESQUERDA */
-.header-main .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  z-index: 2; /* Garante que fique clicável por cima */
+    /* 1. LOGO FIXA NA ESQUERDA */
+    .header-main .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      z-index: 2;
+      /* Garante que fique clicável por cima */
       justify-content: flex-start;
-}
+    }
 
-/* 2. MENU CENTRALIZADO NO MEIO DA TELA */
-@media (min-width: 769px) {
-  .header-main .main-nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 24px;
-  }
-  
-  .mobile-menu-toggle {
-    display: none; /* Esconde o botão do menu no desktop */
-  }
-}
+    /* 2. MENU CENTRALIZADO NO MEIO DA TELA */
+    @media (min-width: 769px) {
+      .header-main .main-nav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 24px;
+      }
 
-/* Ajustes no Mobile (Abaixo de 768px) */
-@media (max-width: 768px) {
-  .header-main .wrap {
-    justify-content: space-between;
-  }
+      .mobile-menu-toggle {
+        display: none;
+        /* Esconde o botão do menu no desktop */
+      }
+    }
 
-  .header-main .main-nav {
-    display: none; /* Esconde o menu normal no celular para usar o botão */
-  }
+    /* Ajustes no Mobile (Abaixo de 768px) */
+    @media (max-width: 768px) {
+      .header-main .wrap {
+        justify-content: space-between;
+      }
 
-  .mobile-menu-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-}
+      .header-main .main-nav {
+        display: none;
+        /* Esconde o menu normal no celular para usar o botão */
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
 
     .mobile-menu-toggle {
       display: none;
@@ -536,6 +541,8 @@
       transform: translateX(-50%) scaleX(1);
     }
 
+
+
     section#categorias {
       scroll-margin-top: 120px;
     }
@@ -545,6 +552,34 @@
       align-items: center;
       gap: 22px;
     }
+
+    /* 1. Garante que o wrap seja uma linha flexível */
+.header-main .wrap {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* 2. Mantém a logo na extrema esquerda */
+.header-main .logo-brand {
+  margin-right: auto !important; /* Puxa tudo que estiver à direita para longe */
+}
+
+/* 3. Centraliza o NAV sem alterar seu posicionamento interno */
+.top-header-v2__nav {
+  margin-left: auto !important;
+  margin-right: auto !important; /* As duas margens auto centralizam o bloco perfeitamente */
+  display: flex !important;
+  pointer-events: auto !important; /* Garante que os cliques/links continuem ativos */
+}
+
+/* Se você usa algum efeito especial/gold no hover ou animação nos links, 
+   garanta que o z-index e o cursor fiquem ativos */
+.top-header-v2__nav a {
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+}
 
     @media (max-width:860px) {
       .mobile-menu-toggle {
@@ -2874,15 +2909,16 @@
           </svg>Frete grátis</span>
       </div>
     </div>
-  <div class="header-main">
+    <div class="header-main">
   <div class="wrap">
-    
+
     <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
+    <!-- 1. LOGO NA ESQUERDA -->
     <a href="#hero" class="logo logo-brand" aria-label="Cantu Confecções e Brindes, desde 1981">
       <picture>
         <source media="(max-width: 768px)" srcset="./logo.png">
@@ -2891,17 +2927,21 @@
 
       <div class="mobile-logo-text">
         <strong class="mobile-logo-title">CANTU BRINDES</strong>
-        <small class="mobile-logo-subtitle">DESDE 1981</small>
+        <small class="mobile-logo-subtitle">&nbsp;&nbsp;&nbsp; DESDE 1981</small>
       </div>
     </a>
 
-    <nav class="main-nav">
-      <a href="#">Início</a>
+    <!-- 2. MENU NO MEIO -->
+    <nav class="top-header-v2__nav">
+      <a href="#hero">Início</a>
       <a href="#categorias">Categorias</a>
-      <a href="#contato">Contato</a>
       <a href="#grife">Grife Personalizada</a>
+      <a href="#contato">Contato</a>
     </nav>
-    
+
+    <!-- 3. ELEMENTO INVISÍVEL NA DIREITA (Espelho da Logo) -->
+    <div class="header-spacer" aria-hidden="true"></div>
+
   </div>
 </div>
 
@@ -2965,8 +3005,7 @@
           <div class="carousel tag" id="carousel" style="color:var(--ink-dark)">
             <div class="dots" id="dots"></div>
 
-            <div class="slide active" data-color="var(--gold)"
-              data-title="CAMISAS POLO"
+            <div class="slide active" data-color="var(--gold)" data-title="CAMISAS POLO"
               data-description="Camisas polo personalizadas para equipes, eventos e ações corporativas. Produzimos com sua identidade visual, em TODAS AS CORES e todos OS TAMANHOS. Solicite um orçamento rápido e atendimento direto pelo WhatsApp.">
               <div class="slide-art" style="background: #05152E">
                 <img class="polo-image" src="./images/vestuario/variaspolos2.png" alt="Camisetas personalizadas">
@@ -2976,8 +3015,7 @@
               </div> -->
             </div>
 
-            <div class="slide" data-color="var(--cta)"
-              data-title="CAMISETAS PERSONALIZADAS" data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.
+            <div class="slide" data-color="var(--cta)" data-title="CAMISETAS PERSONALIZADAS" data-description="Produzimos camisetas personalizadas para empresas, eventos e campanhas promocionais, com qualidade, conforto e impressão de alta definição.
               ">
 
               <div class="slide-art" style="background:#05152E;">
@@ -2990,8 +3028,7 @@
 
             </div>
 
-            <div class="slide" data-color="var(--gold)"
-              data-title="KITS CORPORATIVOS"
+            <div class="slide" data-color="var(--gold)" data-title="KITS CORPORATIVOS"
               data-description="Monte kits de escritório personalizados para integrar novos colaboradores, presentear clientes e fortalecer a cultura da sua empresa.">
               <div class="slide-art" style="background:#05152E">
                 <img src="./images/escritorio/kit.png" alt="Kit corporativo personalizado">
@@ -3875,86 +3912,88 @@
 
   <footer id="contato">
 
-  <div class="footer-grid">
+    <div class="footer-grid">
 
-    <!-- Theme Switcher centralizado em linha via estilos inline -->
-    <div class="header-actions" style="grid-column: 1 / -1; display: flex; justify-content: center; margin-bottom: 20px;">
-      <div class="theme-switcher" aria-label="Escolher tema de cores" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
-        <button type="button" class="theme-button active" data-theme="light">Azul claro</button>
-        <button type="button" class="theme-button" data-theme="medium">Azul médio</button>
-        <button type="button" class="theme-button" data-theme="dark">Azul escuro</button>
-      </div>
-    </div>
-
-    <div>
-
-      <img src="logo.png" class="footer-logo" alt="Logo Cantu">
-
-      <p class="footer-about">
-        Brindes personalizados, uniformes, mochilas e produtos promocionais para fortalecer sua marca.
-      </p>
-
-      <div class="footer-social">
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/cantuconfeccoes/"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=guilherme.sanchez1910@gmail.com" target="_blank"
-          rel="noreferrer noopener"><i class="fa-solid fa-envelope"></i></a>
+      <!-- Theme Switcher centralizado em linha via estilos inline -->
+      <div class="header-actions"
+        style="grid-column: 1 / -1; display: flex; justify-content: center; margin-bottom: 20px;">
+        <div class="theme-switcher" aria-label="Escolher tema de cores"
+          style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
+          <button type="button" class="theme-button active" data-theme="light">Azul claro</button>
+          <button type="button" class="theme-button" data-theme="medium">Azul médio</button>
+          <button type="button" class="theme-button" data-theme="dark">Azul escuro</button>
+        </div>
       </div>
 
-    </div>
+      <div>
 
-    <div>
+        <img src="logo.png" class="footer-logo" alt="Logo Cantu">
 
-      <h4>Categorias</h4>
+        <p class="footer-about">
+          Brindes personalizados, uniformes, mochilas e produtos promocionais para fortalecer sua marca.
+        </p>
 
-      <ul>
-        <li><a href="#vestuario">Vestuário</a></li>
-        <li><a href="#produtos">Escritório</a></li>
-        <li><a href="#garrafas">Garrafas</a></li>
-        <li><a href="#grife">Grife Personalizada</a></li>
-      </ul>
-
-    </div>
-
-    <div>
-
-      <h4>Contato</h4>
-
-      <div class="footer-contact">
-
-        <div>
-          <i class="fa-solid fa-phone"></i>
-          (41) 9953-7953
-        </div>
-
-        <div>
-          <i class="fa-brands fa-whatsapp"></i>
-          (41) 9953-7953
-        </div>
-
-        <div>
-          <i class="fa-solid fa-envelope"></i>
-          atendimentocantu@gmail.com.br
-        </div>
-
-        <div>
-          <i class="fa-solid fa-location-dot"></i>
-          Curitiba - PR
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/cantuconfeccoes/"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=guilherme.sanchez1910@gmail.com" target="_blank"
+            rel="noreferrer noopener"><i class="fa-solid fa-envelope"></i></a>
         </div>
 
       </div>
 
+      <div>
+
+        <h4>Categorias</h4>
+
+        <ul>
+          <li><a href="#vestuario">Vestuário</a></li>
+          <li><a href="#produtos">Escritório</a></li>
+          <li><a href="#garrafas">Garrafas</a></li>
+          <li><a href="#grife">Grife Personalizada</a></li>
+        </ul>
+
+      </div>
+
+      <div>
+
+        <h4>Contato</h4>
+
+        <div class="footer-contact">
+
+          <div>
+            <i class="fa-solid fa-phone"></i>
+            (41) 9953-7953
+          </div>
+
+          <div>
+            <i class="fa-brands fa-whatsapp"></i>
+            (41) 9953-7953
+          </div>
+
+          <div>
+            <i class="fa-solid fa-envelope"></i>
+            atendimentocantu@gmail.com.br
+          </div>
+
+          <div>
+            <i class="fa-solid fa-location-dot"></i>
+            Curitiba - PR
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-  </div>
+    <div class="footer-bottom">
 
-  <div class="footer-bottom">
+      <span>© 2026 Cantu Confecções e Brindes. Todos os direitos reservados.</span>
 
-    <span>© 2026 Cantu Confecções e Brindes. Todos os direitos reservados.</span>
+    </div>
 
-  </div>
-
-</footer>
+  </footer>
 
   <div class="wa-fallback" id="waFallback">
     <span>Não conseguiu abrir o WhatsApp? Copie nosso número:<br><strong>(41) 9953-7953</strong></span>
