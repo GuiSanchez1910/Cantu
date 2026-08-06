@@ -698,25 +698,6 @@
   text-transform: uppercase; /* Garante caixa alta se desejar */
 }
 
-/* Primeira linha */
-.line-1 {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-/* Segunda linha (recuada para a direita) */
-.line-2 {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-left: 4.5rem; /* Ajuste este valor para mover 'e Brindes' mais/menos para a direita */
-}
-
-/* Terceira linha (com recuo maior) */
-.line-3 {
-  font-size: 0.75rem;
-  margin-left: 4rem; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
-  margin-top: 2px;
-}
 .top-header-v2__nav {
   margin: 0 auto !important;
 }
@@ -775,18 +756,28 @@
 /* Primeira linha */
 .line-1 {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 16px;
 }
 
 /* Segunda linha (recuada para a direita) */
 .line-2 {
   font-weight: bold;
-  font-size: 1.1rem;
-    margin-left: 53px;}
+  font-size: 16px;
+    margin-left: 35px;}
 
 /* Terceira linha (com recuo maior) */
 .line-3 {
   font-size: 0.75rem;
-  margin-left: 4rem; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
+  margin-left: 40px; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
   margin-top: 2px;
+}
+
+/* Regra para telas de celular (até 768px de largura) */
+@media (max-width: 768px) {
+  .logo-image {
+    width: 116px !important;
+    height: 140px !important;
+    object-fit: contain;
+    margin-bottom: 0px !important;
+  }
 }
