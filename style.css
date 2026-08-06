@@ -326,7 +326,7 @@
 }
 
 .mobile-logo-text {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: flex-start; /* alinha as duas linhas pela esquerda */
@@ -689,7 +689,34 @@
   width: 100% !important;
 }
 
-/* Força o menu a ficar centralizado entre os dois lados */
+
+
+.mobile-logo-text {
+  /* display: flex; */
+  flex-direction: column; /* Empilha as linhas */
+  font-family: sans-serif; /* Use a fonte da sua preferência */
+  text-transform: uppercase; /* Garante caixa alta se desejar */
+}
+
+/* Primeira linha */
+.line-1 {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Segunda linha (recuada para a direita) */
+.line-2 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-left: 4.5rem; /* Ajuste este valor para mover 'e Brindes' mais/menos para a direita */
+}
+
+/* Terceira linha (com recuo maior) */
+.line-3 {
+  font-size: 0.75rem;
+  margin-left: 4rem; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
+  margin-top: 2px;
+}
 .top-header-v2__nav {
   margin: 0 auto !important;
 }
@@ -736,4 +763,30 @@
     overflow: hidden !important;
     pointer-events: none !important;
   }
+}
+
+.mobile-logo-text {
+  /* display: flex; */
+  flex-direction: column; /* Empilha as linhas */
+  font-family: sans-serif; /* Use a fonte da sua preferência */
+  text-transform: uppercase; /* Garante caixa alta se desejar */
+}
+
+/* Primeira linha */
+.line-1 {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Segunda linha (recuada para a direita) */
+.line-2 {
+  font-weight: bold;
+  font-size: 1.1rem;
+    margin-left: 53px;}
+
+/* Terceira linha (com recuo maior) */
+.line-3 {
+  font-size: 0.75rem;
+  margin-left: 4rem; /* Ajuste este valor para alinhar 'Desde 1981' logo abaixo da segunda linha */
+  margin-top: 2px;
 }
