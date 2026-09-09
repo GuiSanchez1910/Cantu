@@ -1,6 +1,26 @@
 // ---------- CONFIG ----------
     const WHATSAPP_NUMBER = "5541999537953";
 
+    function bindSwipe(el, onSwipeLeft, onSwipeRight, threshold = 40) {
+      if (!el) return;
+      let startX = 0;
+      let startY = 0;
+
+      el.addEventListener('touchstart', (event) => {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      }, { passive: true });
+
+      el.addEventListener('touchend', (event) => {
+        const dx = event.changedTouches[0].clientX - startX;
+        const dy = event.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) < threshold || Math.abs(dx) < Math.abs(dy)) return;
+        event.stopPropagation();
+        if (dx < 0) onSwipeLeft();
+        else onSwipeRight();
+      }, { passive: true });
+    }
+
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileNavPanel = document.getElementById('mobileNavPanel');
     const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
@@ -79,7 +99,8 @@
       slides[current].classList.add('active');
       dotsWrap.children[current].classList.add('active');
       heroTitle.innerHTML = slides[current].dataset.title;
-heroDescription.innerHTML = slides[current].dataset.description;    }
+      heroDescription.innerHTML = slides[current].dataset.description;
+    }
     document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
     document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
 
@@ -93,16 +114,12 @@ heroDescription.innerHTML = slides[current].dataset.description;    }
     carousel.addEventListener('mouseenter', () => clearInterval(auto));
     carousel.addEventListener('mouseleave', startAuto);
 
-    let touchStartX = 0;
-    carousel.addEventListener('touchstart', (event) => {
-      touchStartX = event.changedTouches[0].clientX;
-      clearInterval(auto);
-    }, { passive: true });
-    carousel.addEventListener('touchend', (event) => {
-      const distance = event.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(distance) > 40) goTo(current + (distance < 0 ? 1 : -1));
-      startAuto();
-    }, { passive: true });
+    carousel.addEventListener('touchstart', () => clearInterval(auto), { passive: true });
+    bindSwipe(
+      carousel,
+      () => { goTo(current + 1); startAuto(); },
+      () => { goTo(current - 1); startAuto(); }
+    );
 
     startAuto();
 
@@ -158,6 +175,23 @@ heroDescription.innerHTML = slides[current].dataset.description;    }
       });
 
       updateProdCarousel();
+
+      const prodSwipeArea = carouselWrap.querySelector('.prod-carousel') || carouselWrap;
+      bindSwipe(
+        prodSwipeArea,
+        () => {
+          if (prodIndex < getMaxIndex()) {
+            prodIndex += 1;
+            updateProdCarousel();
+          }
+        },
+        () => {
+          if (prodIndex > 0) {
+            prodIndex -= 1;
+            updateProdCarousel();
+          }
+        }
+      );
     });
 
     document.querySelectorAll('[data-gallery]').forEach((gallery) => {
@@ -211,6 +245,13 @@ heroDescription.innerHTML = slides[current].dataset.description;    }
           goToImage(imgCurrent + 1);
         });
       }
+
+      const gallerySwipeArea = gallery.querySelector('.prod-images') || gallery;
+      bindSwipe(
+        gallerySwipeArea,
+        () => goToImage(imgCurrent + 1),
+        () => goToImage(imgCurrent - 1)
+      );
     });
 
     // ---------- Reveal on scroll (with stagger for grids) ----------
@@ -232,11 +273,3 @@ heroDescription.innerHTML = slides[current].dataset.description;    }
     window.addEventListener('load', () => document.body.classList.add('ready'));
     setTimeout(() => document.body.classList.add('ready'), 400);
 
-    // ---------- Cursor glow inside hero ----------
-    const heroEl = document.getElementById('hero');
-    const glow = document.getElementById('cursorGlow');
-    heroEl.addEventListener('mousemove', (e) => {
-      const rect = heroEl.getBoundingClientRect();
-      glow.style.left = (e.clientX - rect.left) + 'px';
-      glow.style.top = (e.clientY - rect.top) + 'px';
-    });

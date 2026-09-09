@@ -1371,6 +1371,7 @@ section#categorias {
   margin: 0 48px;
   padding: 22px 0px 18px;
   position: relative;
+  touch-action: pan-y;
 }
 
 
@@ -1407,6 +1408,7 @@ section#categorias {
   aspect-ratio: 1;
   background: white;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .prod-images {
