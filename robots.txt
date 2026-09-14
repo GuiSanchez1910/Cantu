@@ -1,0 +1,5 @@
+# Cantu Confecções e Brindes — https://www.cantubrindes.com.br/
+User-agent: *
+Allow: /
+
+Sitemap: https://www.cantubrindes.com.br/sitemap.xml

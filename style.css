@@ -2372,7 +2372,8 @@ footer {
   color: var(--highlight);
 }
 
-.footer-contact div {
+.footer-contact div,
+.footer-contact a {
   color: var(--footer-text);
   font-size: 15px;
 }
@@ -2442,9 +2443,11 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-style: normal;
 }
 
-.footer-contact div {
+.footer-contact div,
+.footer-contact a {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -2454,6 +2457,10 @@ footer {
 
 .footer-contact i {
   width: 18px;
+  color: #FFC857;
+}
+
+.footer-contact a:hover {
   color: #FFC857;
 }
 

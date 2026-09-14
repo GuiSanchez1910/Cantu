@@ -1,0 +1,18 @@
+{
+  "name": "Cantu Confecções e Brindes",
+  "short_name": "Cantu",
+  "description": "Uniformes, camisas polo, camisetas e brindes corporativos personalizados em Curitiba, desde 1981.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "pt-BR",
+  "background_color": "#05152E",
+  "theme_color": "#05152E",
+  "icons": [
+    {
+      "src": "./images/logo/iconenavegador.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    }
+  ]
+}
