@@ -19,6 +19,9 @@
 .catalog-card {
   width: 320px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: var(--cta);
   color: #fff;
   border-radius: 20px;
@@ -31,7 +34,7 @@
 .catalog-icon {
   font-size: 48px;
   color: #fff;
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
 }
 
 .catalog-card h3 {
@@ -61,6 +64,7 @@
   .catalog-card {
     width: 100%;
     max-width: 420px;
+    margin-inline: auto;
   }
 }
 
@@ -389,7 +393,7 @@ header {
 }
 
 .logo {
-  font-family: 'Fraunces', serif;
+  font-family: inherit;
   font-weight: 700;
   font-size: 21px;
   display: flex;
@@ -398,10 +402,11 @@ header {
 }
 
 .logo-image {
-  width: 140px;
-  height: 140px;
-  margin-bottom: 20px;
-  /* object-fit: contain; */
+  width: auto;
+  height: 56px;
+  max-width: 220px;
+  margin-bottom: 0;
+  object-fit: contain;
 }
 
 .logo-brand {
@@ -412,6 +417,10 @@ header {
   line-height: 1.1;
   align-items: center;
   text-decoration: none;
+}
+
+.logo picture {
+  display: contents;
 }
 
 .logo-text {
@@ -527,12 +536,26 @@ section#categorias {
   }
 
   .header-main .wrap {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 42px minmax(0, 1fr);
     align-items: center;
     gap: 10px;
     height: 70px;
     padding: 0px 16px;
+  }
+
+  .top-header-v2__nav {
+    display: none !important;
+  }
+
+  .mobile-logo-text {
+    display: flex;
+  }
+
+  .header-main .logo-brand {
+    margin-right: 0 !important;
+    justify-content: center;
+    width: 100%;
   }
 
   .logo {
@@ -546,8 +569,8 @@ section#categorias {
   }
 
   .logo-image {
-    /* width: 150px; */
-    /* height: 76px; */
+    height: 44px;
+    max-width: 180px;
   }
 
   .logo-text {
@@ -658,8 +681,9 @@ section#categorias {
   }
 
   .header-main .logo-image {
-    width: 160px;
-    height: auto;
+    width: auto;
+    height: 68px;
+    max-width: 240px;
     margin-bottom: 0;
   }
 
@@ -700,7 +724,8 @@ section#categorias {
   }
 
   .header-main .logo-image {
-    width: 145px;
+    height: 58px;
+    max-width: 200px;
   }
 
   .top-header-v2__nav {
@@ -1144,6 +1169,14 @@ section#categorias {
   color: var(--ink-soft);
 }
 
+.catalog-card h3 {
+  color: #fff;
+}
+
+.catalog-card p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .specialty-badge {
   display: inline-flex;
   align-items: center;
@@ -1359,6 +1392,8 @@ section#categorias {
 /* -------- PRODUCT CAROUSEL -------- */
 .products-carousel {
   padding: 40px 0 60px;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
 }
 
 .prod-carousel-wrap {
@@ -2046,8 +2081,20 @@ section#categorias {
 
 @media (max-width:700px) {
   .shipping-card {
-    flex-wrap: wrap;
-    text-align: left;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .shipping-text {
+    text-align: center;
+    width: 100%;
+  }
+
+  .shipping-text p {
+    margin-inline: auto;
   }
 
   .shipping-badge {
@@ -2785,8 +2832,53 @@ a.btn.btn-small[data-wa]:hover {
   color: #081B3A;
 }
 
-.btn .quote-icon {
-  font-size: .95em;
+.icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+}
+
+.icon.icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.catalog-icon.icon {
+  width: 48px;
+  height: 48px;
+}
+
+.cat-icon .icon {
+  width: 34px;
+  height: 34px;
+}
+
+.footer-social .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-contact .icon {
+  width: 18px;
+  height: 18px;
+  stroke: #FFC857;
+}
+
+.footer-contact .icon.icon-fill {
+  fill: #FFC857;
+  stroke: none;
+}
+
+.floating-whatsapp .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.btn .icon {
+  width: 1.05em;
+  height: 1.05em;
 }
 
 /* ---- visual decorativo do card Grife (crachá + ícones), robusto em qualquer largura ---- */
@@ -2989,9 +3081,12 @@ a.btn.btn-small[data-wa]:hover {
   margin-bottom: 24px;
 }
 
-.showcase-header i {
+.showcase-header i,
+.showcase-header .icon {
   color: #57c4ff;
-  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  stroke: #57c4ff;
 }
 
 .showcase-grid {
@@ -3012,9 +3107,12 @@ a.btn.btn-small[data-wa]:hover {
   transition: .3s;
 }
 
-.showcase-item i {
-  font-size: 1.8rem;
+.showcase-item i,
+.showcase-item .icon {
+  width: 1.8rem;
+  height: 1.8rem;
   color: #57c4ff;
+  stroke: #57c4ff;
   margin-bottom: 8px;
 }
 
@@ -3093,8 +3191,9 @@ a.btn.btn-small[data-wa]:hover {
   }
 
   .logo-image {
-    width: 116px !important;
-    height: 140px !important;
+    width: auto !important;
+    height: 42px !important;
+    max-width: 168px;
     object-fit: contain;
     margin-bottom: 0 !important;
   }
@@ -3111,8 +3210,10 @@ a.btn.btn-small[data-wa]:hover {
     margin-bottom: 12px;
   }
 
-  .showcase-header i {
-    font-size: 1rem;
+  .showcase-header i,
+  .showcase-header .icon {
+    width: 1rem;
+    height: 1rem;
   }
 
   .showcase-grid {
@@ -3124,8 +3225,10 @@ a.btn.btn-small[data-wa]:hover {
     border-radius: 10px;
   }
 
-  .showcase-item i {
-    font-size: 1.2rem;
+  .showcase-item i,
+  .showcase-item .icon {
+    width: 1.2rem;
+    height: 1.2rem;
   }
 
   .showcase-item span {
@@ -3179,8 +3282,10 @@ a.btn.btn-small[data-wa]:hover {
     padding: 8px 4px;
   }
 
-  .showcase-item i {
-    font-size: 1rem;
+  .showcase-item i,
+  .showcase-item .icon {
+    width: 1rem;
+    height: 1rem;
   }
 
   .showcase-item span {

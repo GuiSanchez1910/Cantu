@@ -10,8 +10,8 @@
   "theme_color": "#05152E",
   "icons": [
     {
-      "src": "./images/logo/iconenavegador.png",
-      "sizes": "1254x1254",
+      "src": "./images/logo/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]

@@ -89,25 +89,100 @@
       const b = document.createElement('button');
       if (i === 0) b.classList.add('active');
       b.setAttribute('aria-label', `Ir para o slide ${i + 1}`);
-      b.addEventListener('click', () => goTo(i));
+      b.addEventListener('click', () => {
+        allowHeroAutoplay();
+        goTo(i);
+      });
       dotsWrap.appendChild(b);
     });
+    /** Coloca src só quando a foto precisa aparecer na tela. */
+    function loadDeferredImage(image) {
+      const pendingSrc = image?.dataset.src;
+      if (!pendingSrc) return;
+      image.src = pendingSrc;
+      image.removeAttribute('data-src');
+    }
+
+    /** Mesma regra de scripts/viewport.py — só baixa foto perto da tela. */
+    function isNearViewport(element, extra = 160) {
+      const rect = element.getBoundingClientRect();
+      return rect.right > 0 && rect.left < window.innerWidth &&
+        rect.bottom > -extra && rect.top < window.innerHeight + extra;
+    }
+
+    function loadCardCover(card) {
+      const cover = card.querySelector('.prod-images img.active') || card.querySelector('.prod-images img');
+      loadDeferredImage(cover);
+    }
+
+    function loadVisibleCarouselCovers(carouselWrap) {
+      carouselWrap.querySelectorAll('.prod-card').forEach((card) => {
+        if (isNearViewport(card, 200)) loadCardCover(card);
+      });
+    }
+
+    function observeFooterLogo() {
+      const logo = document.querySelector('.footer-logo');
+      if (!logo?.dataset.src) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          loadDeferredImage(logo);
+          observer.disconnect();
+        });
+      }, { rootMargin: '80px' });
+      observer.observe(logo);
+    }
+
+    function observeProductCovers() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) loadVisibleCarouselCovers(entry.target);
+        });
+      }, { rootMargin: '180px 0px', threshold: 0.01 });
+      document.querySelectorAll('.prod-carousel-wrap').forEach((wrap) => observer.observe(wrap));
+    }
+
+    /** Baixa a próxima foto do carrossel em segundo plano. */
+    function prefetchDeferredImage(image) {
+      const pendingSrc = image?.dataset.src;
+      if (!pendingSrc) return;
+      const preloader = new Image();
+      preloader.src = pendingSrc;
+    }
+
     function goTo(i) {
       slides[current].classList.remove('active');
       dotsWrap.children[current].classList.remove('active');
       current = (i + slides.length) % slides.length;
+      loadDeferredImage(slides[current].querySelector('img'));
       slides[current].classList.add('active');
       dotsWrap.children[current].classList.add('active');
       heroTitle.innerHTML = slides[current].dataset.title;
       heroDescription.innerHTML = slides[current].dataset.description;
+      prefetchDeferredImage(slides[(current + 1) % slides.length].querySelector('img'));
     }
-    document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
-    document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      allowHeroAutoplay();
+      goTo(current + 1);
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      allowHeroAutoplay();
+      goTo(current - 1);
+    });
 
     let auto;
+    let heroAutoplayAllowed = false;
+
+    function allowHeroAutoplay() {
+      heroAutoplayAllowed = true;
+      startAuto();
+    }
+
     function startAuto() {
+      if (!heroAutoplayAllowed) return;
       clearInterval(auto);
-      auto = setInterval(() => goTo(current + 1), 5000);
+      auto = setInterval(() => goTo(current + 1), 8000);
     }
 
     const carousel = document.getElementById('carousel');
@@ -117,11 +192,9 @@
     carousel.addEventListener('touchstart', () => clearInterval(auto), { passive: true });
     bindSwipe(
       carousel,
-      () => { goTo(current + 1); startAuto(); },
-      () => { goTo(current - 1); startAuto(); }
+      () => { allowHeroAutoplay(); goTo(current + 1); },
+      () => { allowHeroAutoplay(); goTo(current - 1); }
     );
-
-    startAuto();
 
     // ---------- Product carousel ----------
     document.querySelectorAll('.prod-carousel-wrap').forEach((carouselWrap) => {
@@ -153,6 +226,7 @@
         prodTrack.style.transform = `translateX(-${offset}px)`;
         if (prodPrevBtn) prodPrevBtn.disabled = prodIndex <= 0;
         if (prodNextBtn) prodNextBtn.disabled = prodIndex >= getMaxIndex();
+        requestAnimationFrame(() => loadVisibleCarouselCovers(carouselWrap));
       }
 
       if (prodPrevBtn) {
@@ -194,6 +268,9 @@
       );
     });
 
+    observeProductCovers();
+    observeFooterLogo();
+
     document.querySelectorAll('[data-gallery]').forEach((gallery) => {
       const images = gallery.querySelectorAll('.prod-images img');
       const dotsWrap = gallery.querySelector('.prod-img-dots');
@@ -229,8 +306,10 @@
         images[imgCurrent].classList.remove('active');
         if (dotsWrap?.children[imgCurrent]) dotsWrap.children[imgCurrent].classList.remove('active');
         imgCurrent = (i + images.length) % images.length;
+        loadDeferredImage(images[imgCurrent]);
         images[imgCurrent].classList.add('active');
         if (dotsWrap?.children[imgCurrent]) dotsWrap.children[imgCurrent].classList.add('active');
+        prefetchDeferredImage(images[(imgCurrent + 1) % images.length]);
       }
 
       if (prevBtn) {
