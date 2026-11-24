@@ -2789,6 +2789,14 @@ footer {
   }
 }
 
+/* Desktop: indicadores do carrossel à direita, longe dos botões do hero. */
+@media (min-width: 769px) {
+  .dots {
+    left: auto;
+    right: clamp(24px, 8vw, 128px);
+  }
+}
+
 @media (max-width:560px) {
   .cat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
